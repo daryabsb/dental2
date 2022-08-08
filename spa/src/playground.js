@@ -27,8 +27,14 @@
 //     })
 // });
 
-const numbers = [1, 2, 3, 4, 5];
+// const numbers = [1, 2, 3, 4, 5];
 
-const squares = numbers.map((num) => num * num)
+// const squares = numbers.map((num) => num * num)
 
-console.log(squares);
+// console.log(squares);
+const favoriteFood = "sushi";
+
+const goodFoods = {
+    [favoriteFood]: true
+};
+console.log(goodFoods)
