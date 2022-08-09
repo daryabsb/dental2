@@ -32,9 +32,26 @@
 // const squares = numbers.map((num) => num * num)
 
 // console.log(squares);
-const favoriteFood = "sushi";
 
-const goodFoods = {
-    [favoriteFood]: true
-};
-console.log(goodFoods)
+// const favoriteFood = "sushi";
+
+// const goodFoods = {
+//     [favoriteFood]: true
+// };
+// console.log(goodFoods)
+
+// setTimeout:
+// setTimeout(() => {
+//     console.log("I will print after 2 seconds")
+// }, 2000)
+
+// setInterval:
+const interval = setInterval(() => {
+    console.log("I will print every 2 seconds")
+}, 2000)
+
+setTimeout(() => {
+    clearInterval(interval);
+}, 10000)
+
+
