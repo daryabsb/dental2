@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1660312333781" clover="3.2.0">
-  <project timestamp="1660312333781" name="All files">
-    <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4" elements="15" coveredelements="15" complexity="0" loc="11" ncloc="11" packages="3" files="4" classes="4"/>
+<coverage generated="1660390249348" clover="3.2.0">
+  <project timestamp="1660390249349" name="All files">
+    <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5" elements="18" coveredelements="18" complexity="0" loc="13" ncloc="13" packages="3" files="5" classes="5"/>
     <package name="components.navs">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="ProfileImage.vue" path="C:\api\dental2\spa\src\components\navs\ProfileImage.vue">
+      <file name="ProfileImage.vue" path="E:\api\dental2\spa\src\components\navs\ProfileImage.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="10" count="2" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
       </file>
-      <file name="SubNav.vue" path="C:\api\dental2\spa\src\components\navs\SubNav.vue">
+      <file name="SubNav.vue" path="E:\api\dental2\spa\src\components\navs\SubNav.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="15" count="2" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.shared">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="ActionButton.vue" path="C:\api\dental2\spa\src\components\shared\ActionButton.vue">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="ActionButton.vue" path="E:\api\dental2\spa\src\components\shared\ActionButton.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
       </file>
+      <file name="TextInput.vue" path="E:\api\dental2\spa\src\components\shared\TextInput.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+      </file>
     </package>
     <package name="utils">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="nextElementInList.js" path="C:\api\dental2\spa\src\utils\nextElementInList.js">
+      <file name="nextElementInList.js" path="E:\api\dental2\spa\src\utils\nextElementInList.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="5" type="stmt"/>

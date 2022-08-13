@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/navs/SubNav.vue</title>
+    <title>Code coverage report for components/shared/TextInput.vue</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/navs</a> SubNav.vue</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/shared</a> TextInput.vue</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -85,7 +85,27 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -99,36 +119,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;div class="w-full h-16 bg-white border-b border-solid border-brand-gray-1"&gt;
-    &lt;div class="flex items-center h-full px-8"&gt;
-      &lt;div v-if="onJobResultsPage" data-test="job-count"&gt;
-        &lt;font-awesome-icon :icon="['fas', 'search']" class="mr-3" /&gt;
-        &lt;span&gt;
-          &lt;span class="text-brand-green-1 mr-2"&gt;5233&lt;/span&gt;Jobs matched
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+	&lt;input
+		type="text"
+		:value="modelValue"
+		:placeholder="placeholder"
+		class="w-full text-lg font-normal focus:outline-none"
+		@input="handleInput"
+	/&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-export default {
-  name: "SubNav",
-  data() {
-    return {
-      onJobResultsPage: true,
-    };
-  },
-};
+	export default {
+		name: "TextInput",
+		props: {
+			placeholder: {
+				type: String,
+				required: false,
+				default: "",
+			},
+			modelValue: {
+				type: String,
+				required: true,
+			},
+		},
+		emits: ["update:modelValue"],
+		methods: {
+			handleInput(e) {
+				this.$emit("update:modelValue", e.target.value);
+			},
+		},
+	};
 &lt;/script&gt;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
