@@ -1,7 +1,7 @@
 <template>
 	<input
 		type="text"
-		:value="value"
+		:value="modelValue"
 		:placeholder="placeholder"
 		class="w-full text-lg font-normal focus:outline-none"
 		@input="handleInput"
@@ -17,14 +17,15 @@
 				required: false,
 				default: "",
 			},
-			value: {
+			modelValue: {
 				type: String,
 				required: true,
 			},
 		},
+		emits: ["update:modelValue"],
 		methods: {
 			handleInput(e) {
-				this.$emit("handleInput", e.target.value);
+				this.$emit("update:modelValue", e.target.value);
 			},
 		},
 	};

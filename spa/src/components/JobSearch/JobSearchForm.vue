@@ -6,7 +6,8 @@
 		<div class="flex flex-nowrap flex-1 h-full text-base font-light">
 			<div class="relative flex items-center flex-1 h-full pr-3">
 				<label for="not" class="absolute left-0 -top-10">Role:</label>
-				<text-input placeholder="Software Engineer" :value="role" @handle-input="role = $event"></text-input>
+				<text-input v-model="role" placeholder="Software Engineer"></text-input>
+				<!-- :value="role" @handle-input="role = $event" -->
 				<!-- <input
 					v-model="role"
 					type="text"
@@ -19,7 +20,8 @@
 			>in</span>
 			<div class="relative flex items-center flex-1 h-full pl-3">
 				<label for="not" class="absolute left-0 -top-10">Where?</label>
-				<text-input placeholder="Los Angeles" :value="location" @handle-input="location = $event"></text-input>
+				<text-input v-model="location" placeholder="Los Angeles"></text-input>
+				<!-- :value="location" @handle-input="location = $event" -->
 				<!-- <input
 					v-model="location"
 					type="text"
