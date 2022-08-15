@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 class IndexTemplateView(TemplateView):
     template_name = "index.html"
 
-# def index(request):
+def my_test(request):
 
-#     context = {'What is:': "IT is nothing"}
-#     return render(request, 'index.html', context)
+    # context = {'What is:': "IT is nothing"}
+    return HttpResponse('My Test')

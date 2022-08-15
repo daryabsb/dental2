@@ -1,3 +1,24 @@
+const axios = require("axios");
+
+const url = "http://localhost:3000/jobs";
+
+
+// const jobs1 = () => {
+//     axios.get(url)
+//         .then((response) => {
+//             console.log(response.data)
+//         });
+// }
+// jobs1();
+
+const jobs2 = async () => {
+    const response = await axios.get(url);
+    console.log(response.data);
+}
+jobs2();
+
+// console.log(jobs.data);
+
 // import { evenOrOdd, multiply } from "@/playground";
 
 // describe("basic math", () => {
@@ -46,12 +67,12 @@
 // }, 2000)
 
 // setInterval:
-const interval = setInterval(() => {
-    console.log("I will print every 2 seconds")
-}, 2000)
+// const interval = setInterval(() => {
+//     console.log("I will print every 2 seconds")
+// }, 2000)
 
-setTimeout(() => {
-    clearInterval(interval);
-}, 10000)
+// setTimeout(() => {
+//     clearInterval(interval);
+// }, 10000)
 
 

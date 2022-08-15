@@ -18,11 +18,13 @@ from django.urls import path, include, re_path
 
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import IndexTemplateView
+from core.views import IndexTemplateView, my_test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.api.urls')),
+    path('doctors/', include('core.api.urls')),
+    path('mytest', my_test),
     re_path(r"^.*$", IndexTemplateView.as_view(), name="entry-point"),
 ]
 

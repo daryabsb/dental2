@@ -84,7 +84,8 @@ export default {
           url: "/",
         },
         { id: 5, title: "Students", url: "/" },
-        { id: 6, title: "Jobs", url: "/jobs/results" },
+        { id: 6, title: "My Test", url: "/mytest" },
+        { id: 7, title: "Jobs", url: "/jobs/results" },
       ],
     };
   },
