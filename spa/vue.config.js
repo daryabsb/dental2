@@ -1,27 +1,26 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-  transpileDependencies: true,
+    transpileDependencies: true,
 });
 
 module.exports = {
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? "/static/dist/"
-      : "http://127.0.0.1:8081",
-  outputDir: "../static/dist",
-  indexPath: "../../templates/index.html",
-  pages: {
-    index: {
-      entry: "src/main.js",
-      title: "ARON - Job Search",
+    publicPath: process.env.NODE_ENV === "production" ?
+        "/static/dist/" :
+        "http://127.0.0.1:8080",
+    outputDir: "../static/dist",
+    indexPath: "../../templates/index.html",
+    pages: {
+        index: {
+            entry: "src/main.js",
+            title: "ARON - Job Search",
+        },
     },
-  },
-  devServer: {
-    devMiddleware: {
-      publicPath: "http://127.0.0.1:8080",
-      writeToDisk: (filePath) => filePath.endsWith("index.html"),
+    devServer: {
+        devMiddleware: {
+            publicPath: "http://127.0.0.1:8080",
+            writeToDisk: (filePath) => filePath.endsWith("index.html"),
+        },
+        hot: "only",
+        headers: { "Access-Control-Allow-Origin": "*" },
     },
-    hot: "only",
-    headers: { "Access-Control-Allow-Origin": "*" },
-  },
 };
