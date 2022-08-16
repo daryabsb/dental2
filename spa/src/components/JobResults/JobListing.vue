@@ -5,7 +5,7 @@
 			class="block mx-auto bg-white border border-solid border-brand-gray-2 rounded hover:shadow-gray"
 		>
 			<div class="pt-5 pb-2 mx-8 border-b border-solid border-brand-gray-2">
-				<h2 class="mb-2 text-2xl">{{ job.title }}</h2>
+				<h2 class="mb-2 text-2xl">{{job.id}} - {{ job.title }}</h2>
 				<div class="flex flex-ro align-middle">
 					<div class="mr-5">
 						<span>{{ job.organization }}</span>
