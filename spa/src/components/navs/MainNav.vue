@@ -20,7 +20,7 @@
 				</ul>
 			</nav>
 			<div class="flex items-center h-full ml-auto">
-				<ProfileImage v-if="isLoggedIn" data-test="profile-image" @click="isLoggedIn = false" />
+				<ProfileImage v-if="isLoggedIn" data-test="profile-image" @click="loginUser" />
 				<action-button v-else type="primary" text="Sign in" data-test="login-button" @click="loginUser"></action-button>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 		data() {
 			return {
 				company: "ARON",
-				isLoggedIn: false,
+				// isLoggedIn: false,
 				menuItems: [
 					{
 						id: 1,
@@ -77,10 +77,13 @@
 					"h-32": this.isLoggedIn,
 				};
 			},
+			isLoggedIn() {
+				return this.$store.state.isLoggedIn;
+			},
 		},
 		methods: {
 			loginUser() {
-				this.isLoggedIn = true;
+				this.$store.commit("LOGIN_USER");
 			},
 		},
 	};

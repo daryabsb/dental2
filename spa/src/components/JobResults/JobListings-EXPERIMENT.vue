@@ -43,13 +43,6 @@ export default {
       return this.$route.query.page || "1";
     },
   },
-  methods: {
-    nextPageUrl() {
-      this.page = this.$route.query.page || "1";
-      this.page++;
-      this.$router.push(`/jobs/results?page=${this.page}`);
-    },
-  },
   async mounted() {
     this.page = this.$route.query.page || 1;
     const url = "http://localhost:3000/jobs";
@@ -59,6 +52,13 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  methods: {
+    nextPageUrl() {
+      this.page = this.$route.query.page || "1";
+      this.page++;
+      this.$router.push(`/jobs/results?page=${this.page}`);
+    },
   },
 };
 </script>
