@@ -4,9 +4,8 @@ module.exports = defineConfig({
 });
 
 module.exports = {
-    // publicPath: process.env.NODE_ENV === "production" ?
-    //     "../static/dist/" : "http://127.0.0.1:8080" ?? "http://127.0.0.1:8081",
-    publicPath: "http://127.0.0.1:8081" || "http://127.0.0.1:8080",
+    publicPath: process.env.NODE_ENV === "production" ?
+        "../static/dist/" : "http://127.0.0.1:8080",
     outputDir: "../static/dist",
     indexPath: "../../templates/index.html",
     pages: {

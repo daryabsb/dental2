@@ -7,32 +7,35 @@ import { createRouter, createWebHashHistory } from "vue-router";
 // import JobView from "@/views/JobView.vue";
 
 const routes = [{
-    path: "/",
-    name: "home",
-    component: () =>
-        import("@/views/HomeView.vue"),
-},
-{
-    path: "/jobs/results",
-    name: "jobResults",
-    component: () =>
-        import( /* webpackChunkName: "jobs" */ "@/views/JobResultsView.vue"),
-    // component: JobResultsView,
-    // component: () => import(/* webpackChunkName: "jobs" */ '@/views/JobResultsView.vue')
-},
-{
-    path: "/jobs/results/:id",
-    name: "jobListing",
-    // component: JobView,
-    component: () =>
-        import( /* webpackChunkName: "jobs" */ '@/views/JobView.vue'),
-},
+        path: "/",
+        name: "home",
+        component: () =>
+            import ("@/views/HomeView.vue"),
+    },
+    {
+        path: "/jobs/results",
+        name: "jobResults",
+        component: () =>
+            import ( /* webpackChunkName: "jobs" */ "@/views/JobResultsView.vue"),
+        // component: JobResultsView,
+        // component: () => import(/* webpackChunkName: "jobs" */ '@/views/JobResultsView.vue')
+    },
+    {
+        path: "/jobs/results/:id",
+        name: "jobListing",
+        // component: JobView,
+        component: () =>
+            import ( /* webpackChunkName: "jobs" */ '@/views/JobView.vue'),
+    },
 ];
 
 const router = createRouter({
     history: createWebHashHistory("/"),
     // history: createWebHashHistory("/"),
     routes,
+    scrollBehavior() {
+        return { top: 0, left: 0, behavior: "smooth" }
+    },
 });
 
 export default router;
