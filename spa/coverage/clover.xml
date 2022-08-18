@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1660658441935" clover="3.2.0">
-  <project timestamp="1660658441935" name="All files">
-    <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6" elements="21" coveredelements="21" complexity="0" loc="15" ncloc="15" packages="4" files="6" classes="6"/>
+<coverage generated="1660807999604" clover="3.2.0">
+  <project timestamp="1660807999604" name="All files">
+    <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8" elements="28" coveredelements="28" complexity="0" loc="20" ncloc="20" packages="5" files="7" classes="7"/>
     <package name="components.JobResults">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="JobListing.vue" path="E:\api\dental2\spa\src\components\JobResults\JobListing.vue">
+      <file name="JobListing.vue" path="C:\api\dental2\spa\src\components\JobResults\JobListing.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="39" count="2" type="stmt"/>
         <line num="49" count="5" type="stmt"/>
@@ -12,12 +12,12 @@
     </package>
     <package name="components.navs">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="ProfileImage.vue" path="E:\api\dental2\spa\src\components\navs\ProfileImage.vue">
+      <file name="ProfileImage.vue" path="C:\api\dental2\spa\src\components\navs\ProfileImage.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="10" count="2" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
       </file>
-      <file name="SubNav.vue" path="E:\api\dental2\spa\src\components\navs\SubNav.vue">
+      <file name="SubNav.vue" path="C:\api\dental2\spa\src\components\navs\SubNav.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="15" count="2" type="stmt"/>
         <line num="19" count="2" type="stmt"/>
@@ -25,20 +25,31 @@
     </package>
     <package name="components.shared">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="ActionButton.vue" path="E:\api\dental2\spa\src\components\shared\ActionButton.vue">
+      <file name="ActionButton.vue" path="C:\api\dental2\spa\src\components\shared\ActionButton.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="3" type="stmt"/>
         <line num="21" count="3" type="stmt"/>
       </file>
-      <file name="TextInput.vue" path="E:\api\dental2\spa\src\components\shared\TextInput.vue">
+      <file name="TextInput.vue" path="C:\api\dental2\spa\src\components\shared\TextInput.vue">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="12" count="2" type="stmt"/>
         <line num="28" count="5" type="stmt"/>
       </file>
     </package>
+    <package name="store">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="index.js" path="C:\api\dental2\spa\src\store\index.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="utils">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="nextElementInList.js" path="E:\api\dental2\spa\src\utils\nextElementInList.js">
+      <file name="nextElementInList.js" path="C:\api\dental2\spa\src\utils\nextElementInList.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="5" type="stmt"/>

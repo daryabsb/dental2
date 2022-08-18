@@ -75,7 +75,7 @@ describe("MainNav", () => {
         });
     });
 
-    describe("when user is logs in", () => {
+    describe("when user is logged in", () => {
         it("displays user profile image", () => {
             // const store = createStore({
             //     state() {
