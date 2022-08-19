@@ -21,9 +21,9 @@ from rest_framework import authentication, permissions, parsers, viewsets, mixin
 # from rest_framework.authentication import TokenAuthentication
 # from rest_framework.permissions import IsAuthenticated
 
-from core.models import User
+from core.models import Description, Job, Location, PreferredQualification, Qualification, User
 from .serializers import (
-    UserSerializer, AuthTokenSerializer, 
+    DescriptionSerializer, JobSerializer, LocationSerializer, PreferredQualificationSerializer, QualificationSerializer, UserSerializer, AuthTokenSerializer, 
     ChangePasswordSerializer,
     )
 # from .pagination import PatientPagination, AppointmentPagination
@@ -83,3 +83,34 @@ class ChangePasswordView(generics.UpdateAPIView):
                 return Response(response)
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+
+class JobViewset(viewsets.ModelViewSet):
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
+    permission_classes = (permissions.AllowAny,)
+    lookup_field = 'id'
+
+class LocationViewset(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    permission_classes = (permissions.AllowAny,)
+    lookup_field = 'id'
+
+class QualificationViewset(viewsets.ModelViewSet):
+    queryset = Qualification.objects.all()
+    serializer_class = QualificationSerializer
+    permission_classes = (permissions.AllowAny,)
+    lookup_field = 'id'
+
+class PreferredViewset(viewsets.ModelViewSet):
+    queryset = PreferredQualification.objects.all()
+    serializer_class = PreferredQualificationSerializer
+    permission_classes = (permissions.AllowAny,)
+    lookup_field = 'id'
+
+class DescriptionViewset(viewsets.ModelViewSet):
+    queryset = Description.objects.all()
+    serializer_class = DescriptionSerializer
+    permission_classes = (permissions.AllowAny,)
+    lookup_field = 'id'

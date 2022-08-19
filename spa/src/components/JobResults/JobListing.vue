@@ -11,7 +11,7 @@
 						<span>{{ job.organization }}</span>
 					</div>
 					<ul>
-						<li v-for="loc in job.locations" :key="loc" class="inline-block mr-5">{{ loc }}</li>
+						<li v-for="loc in job.locations" :key="loc" class="inline-block mr-5">{{ loc.location }}</li>
 					</ul>
 				</div>
 			</div>
@@ -21,7 +21,7 @@
 					<div>
 						<ul class="pl-8 list-disc">
 							<li v-for="qual in job.minimumQualifications" :key="qual">
-								{{ qual }}
+								{{ qual.qualification }}
 								<br />
 							</li>
 						</ul>

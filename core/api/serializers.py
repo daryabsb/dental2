@@ -1,6 +1,11 @@
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
 from core.models import (
+    Description,
+    Job,
+    Location,
+    PreferredQualification,
+    Qualification,
     User,
     )
 
@@ -65,3 +70,52 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+class QualificationSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Qualification
+        fields = ('qualification',)
+        read_only_Fields = ('id',)
+
+class PreferredQualificationSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = PreferredQualification
+        fields = ('qualification',)
+        read_only_Fields = ('id',)
+
+class DescriptionSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Description
+        fields = ('description',)
+        read_only_Fields = ('id',)
+
+class LocationSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Location
+        fields = ('location',)
+        read_only_Fields = ('id',)
+
+class JobSerializer(serializers.ModelSerializer):
+    locations = LocationSerializer(many=True, required=False)
+    minimumQualifications = QualificationSerializer(many=True, required=False)
+    preferredQualifications = PreferredQualificationSerializer(many=True, required=False)
+    description = DescriptionSerializer(many=True, required=False)
+
+    class Meta:
+        model = Job
+        fields = [
+            'id', 'title', 'organization', 'degree', 'jobType',
+            'locations', 'minimumQualifications', 'preferredQualifications', 'description',
+             'dateAdded',
+        ]
+        read_only_Fields = ("id",)
+
+    def create(self, validated_data):
+        print(validated_data)
+        job = Job.objects.create(**validated_data)
+        return job

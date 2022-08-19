@@ -64,3 +64,37 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
+class Job(models.Model):
+    title = models.CharField(max_length=50)
+    organization = models.CharField(max_length=50)
+    degree = models.CharField(max_length=50)
+    jobType = models.CharField(max_length=50)
+    dateAdded = models.DateField(blank=True,null=True)
+
+    def __str__(self):
+        return self.title
+
+class Qualification(models.Model):
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='minimumQualifications')
+    qualification = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.qualification
+
+class PreferredQualification(models.Model):
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='preferredQualifications')
+    qualification = models.CharField(max_length=200)
+
+class Description(models.Model):
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='description')
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.description
+
+class Location(models.Model):
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='locations')
+    location = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.location

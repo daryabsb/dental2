@@ -27,6 +27,7 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "jobs" */ '@/views/JobView.vue'),
     },
+
 ];
 
 const router = createRouter({

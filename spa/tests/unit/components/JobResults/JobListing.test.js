@@ -35,13 +35,21 @@ describe("JobListing", () => {
         expect(wrapper.text()).toMatch("McDonald");
     });
     it("renders job locations", () => {
-        const jobProps = createJobProps({ locations: ["Dallas", "California"] })
+        const jobProps = createJobProps({
+            locations: [
+                { location: "Dallas" }, { location: "California" }
+            ]
+        })
         const wrapper = mount(JobListing, createConfig(jobProps));
         expect(wrapper.text()).toMatch("Dallas");
         expect(wrapper.text()).toMatch("California");
     });
     it("renders job qualifications", () => {
-        const jobProps = createJobProps({ minimumQualifications: ["Coding", "Developing"] })
+        const jobProps = createJobProps({
+            minimumQualifications: [
+                { qualification: "Coding" }, { qualification: "Developing" }
+            ]
+        })
         const wrapper = mount(JobListing, createConfig(jobProps));
         expect(wrapper.text()).toMatch("Coding");
         expect(wrapper.text()).toMatch("Developing");

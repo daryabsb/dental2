@@ -36,7 +36,7 @@
 
 <script>
 	import { mapState, mapMutations } from "vuex";
-
+	import getJobs from "@/api/getJobs";
 	import ActionButton from "@/components/shared/ActionButton.vue";
 	import ProfileImage from "@/components/navs/ProfileImage.vue";
 	import SubNav from "@/components/navs/SubNav.vue";
@@ -87,6 +87,9 @@
 					"h-32": this.isLoggedIn,
 				};
 			},
+			getJobs() {
+				return getJobs();
+			},
 			// isLoggedIn() {
 			// 	return this.$store.state.isLoggedIn;
 			// },
@@ -96,9 +99,9 @@
 			]),
 		},
 		methods: {
-			// LOGIN_USER() {
-			// 	this.$store.commit(LOGIN_USER);
-			// },
+			LOGIN_USER() {
+				this.$store.commit(LOGIN_USER);
+			},
 			...mapMutations(["LOGIN_USER"]),
 		},
 	};

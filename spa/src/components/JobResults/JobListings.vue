@@ -64,13 +64,14 @@
 		},
 		async mounted() {
 			const baseUrl = process.env.VUE_APP_API_URL;
-			// const url = "http://localhost:3000/jobs";
+			// const url = "http://127.0.0.8000/jobs/";
 			try {
-				const response = await axios.get(`${baseUrl}/jobs`);
+				const response = await axios.get(`${baseUrl}/jobs/`);
+				// 	const response = await axios.get(url);
 				this.maxJobs = response.data.length;
 				this.jobs = response.data;
 			} catch (error) {
-				console.log(error);
+				console.log("from job listings", error);
 			}
 		},
 		methods: {},

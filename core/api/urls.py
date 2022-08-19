@@ -2,11 +2,16 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 
 from .views import (
-    CreateUserView, CreateTokenView, ManageUserView, 
-    ChangePasswordView,)
+    CreateUserView, CreateTokenView, DescriptionViewset, LocationViewset, ManageUserView, 
+    ChangePasswordView,JobViewset, PreferredViewset, QualificationViewset)
 
 
 router = routers.DefaultRouter()
+router.register('jobs', JobViewset)
+router.register('locations', LocationViewset)
+router.register('qualifications', QualificationViewset)
+router.register('preferredqualifications', PreferredViewset)
+router.register('descriptions', DescriptionViewset)
 # router.register(r'Receive', api.ReceiveViewSet)
 
 
