@@ -15,7 +15,7 @@ module.exports = {
         "no-console": process.env.NODE_ENV === "production" ? "warn" : 0,
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : 0,
         "vue/multi-word-component-names": ["warn", {
-            "ignores": ["Hero", "Headline"]
+            "ignores": ["Hero", "Headline", "Accordion"]
         }],
         "vue/no-unused-components": "warn",
         // "no-multi-str": "warn",
@@ -28,5 +28,5 @@ module.exports = {
         env: {
             jest: true,
         },
-    }, ],
+    },],
 };
