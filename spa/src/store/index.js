@@ -31,8 +31,8 @@ export const actions = {
     [FETCH_JOBS]: async(context) => {
         try {
             const jobListings = await getJobs();
-            context.commit(RECEIVE_JOBS, jobListings);
-            // commit(MAX_JOBS, res.length);
+            await context.commit(RECEIVE_JOBS, jobListings);
+            await context.commit(MAX_JOBS, jobListings.length);
 
         } catch (error) {
             console.log("from fetch job error", error)

@@ -26,7 +26,8 @@
 </template>
 
 <script>
-	import axios from "axios";
+	import { mapState, mapActions } from "vuex";
+	// import { FETCH_JOBS } from "@/store";
 	import JobListing from "./JobListing.vue";
 	export default {
 		name: "JobListings",
@@ -35,8 +36,7 @@
 		},
 		data() {
 			return {
-				jobs: [],
-				maxJobs: 0,
+				// maxJobs: 0,
 				limit: 3,
 				page: 1,
 			};
@@ -61,20 +61,19 @@
 				const lastJobIndex = this.currentPage * 10;
 				return this.jobs.slice(firstJobIndex, lastJobIndex);
 			},
+			...mapState(["jobs", "maxJobs"]),
 		},
 		async mounted() {
-			const baseUrl = process.env.VUE_APP_API_URL;
-			// const url = "http://127.0.0.8000/jobs/";
 			try {
-				const response = await axios.get(`${baseUrl}/jobs/`);
-				// 	const response = await axios.get(url);
-				this.maxJobs = response.data.length;
-				this.jobs = response.data;
+				await this.FETCH_JOBS();
+				// this.maxJobs = await this.jobs.length;
 			} catch (error) {
 				console.log("from job listings", error);
 			}
 		},
-		methods: {},
+		methods: {
+			...mapActions(["FETCH_JOBS"]),
+		},
 	};
 </script>
 
