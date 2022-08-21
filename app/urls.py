@@ -25,8 +25,11 @@ urlpatterns = [
     path('api/', include('core.api.urls')),
     path('doctors/', include('core.api.urls')),
     path('mytest', my_test),
-    re_path(r"^.*$", IndexTemplateView.as_view(), name="entry-point"),
+    
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += [
+    re_path(r"^.*$", IndexTemplateView.as_view(), name="entry")
+    ]

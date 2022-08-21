@@ -17,7 +17,7 @@ describe("Accordion", () => {
         },
         ...config,
     });
-    it("renders child", async() => {
+    it("renders child", async () => {
         const slots = {
             default: "<h3>My nested child</h3>"
         };
@@ -29,7 +29,7 @@ describe("Accordion", () => {
         expect(wrapper.text()).toMatch("My nested child");
     });
     describe("when slot content is not provided", () => {
-        it("renders default content", async() => {
+        it("renders default content", async () => {
             const slots = {};
             const config = { slots };
             const wrapper = mount(Accordion, createConfig(config));
