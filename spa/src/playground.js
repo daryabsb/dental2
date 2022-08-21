@@ -1,6 +1,24 @@
-const axios = require("axios");
+/* -- Working with js SET function -- */
+// Array - order
+// Object - Association
+// Set - Uniqueness
 
-const url = "http://localhost:3000/jobs";
+const numbers = new Set();
+numbers.add(5);
+numbers.add(10);
+numbers.add(15);
+numbers.add(5);
+numbers.add(25);
+
+console.log(numbers);
+
+
+
+/*  -- Working with AXIOS -- */
+
+// const axios = require("axios");
+
+// const url = "http://localhost:3000/jobs";
 
 
 // const jobs1 = () => {
@@ -11,11 +29,11 @@ const url = "http://localhost:3000/jobs";
 // }
 // jobs1();
 
-const jobs2 = async () => {
-    const response = await axios.get(url);
-    console.log(response.data);
-}
-jobs2();
+// const jobs2 = async () => {
+//     const response = await axios.get(url);
+//     console.log(response.data);
+// }
+// jobs2();
 
 // console.log(jobs.data);
 
@@ -74,5 +92,3 @@ jobs2();
 // setTimeout(() => {
 //     clearInterval(interval);
 // }, 10000)
-
-

@@ -1,4 +1,4 @@
-import { state, mutations, actions } from "@/store";
+import { state, mutations, actions, getters } from "@/store";
 import getJobs from "@/api/getJobs";
 jest.mock("@/api/getJobs");
 
@@ -49,32 +49,20 @@ describe("actions", () => {
     });
 });
 
-describe("actions", () => {
-    describe("FETCH_JOBS", () => {
-        beforeEach(() => {
-            getJobs.mockResolvedValue(
-                [{
-                    id: 1,
-                    title: "Software Engineer",
-                }, ]);
+describe("getters", () => {
+    describe("UNIQUE_ORGANIZATIONS", () => {
+        it("finds unique organization from jobs", async() => {
+            const state = {
+                jobs: [
+                    { organization: "Google" },
+                    { organization: "Amazon" },
+                    { organization: "Google" },
+                ]
+            };
+            const result = getters.UNIQUE_ORGANIZATIONS(state);
+            expect(result).toEqual(new Set(["Google", "Amazon"]));
 
         });
-        it("makes request to fetch jobs", async() => {
-            const context = { commit: jest.fn() };
-            await actions.FETCH_JOBS(context);
-            expect(getJobs).toHaveBeenCalled();
 
-        });
-        it("sends message to save received jobs in store", async() => {
-            const commit = jest.fn();
-            // const context = { commit };
-            await actions.FETCH_JOBS({ commit })
-            expect(commit).toHaveBeenCalledWith("RECEIVE_JOBS", [{
-                id: 1,
-                title: "Software Engineer"
-            }]);
-        });
     });
-
-
 });
