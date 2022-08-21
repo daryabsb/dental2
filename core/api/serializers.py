@@ -6,6 +6,7 @@ from core.models import (
     Location,
     PreferredQualification,
     Qualification,
+    Spotlight,
     User,
     )
 
@@ -119,3 +120,10 @@ class JobSerializer(serializers.ModelSerializer):
         print(validated_data)
         job = Job.objects.create(**validated_data)
         return job
+
+class SpotlightSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Spotlight
+        fields = '__all__'
+        read_only_Fields = ('id',)

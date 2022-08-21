@@ -98,3 +98,11 @@ class Location(models.Model):
 
     def __str__(self):
         return self.location
+
+class Spotlight(models.Model):
+    img = models.ImageField(null=True, blank=True, upload_to=profile_image_file_path)
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title

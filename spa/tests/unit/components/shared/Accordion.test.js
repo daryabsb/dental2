@@ -2,26 +2,40 @@ import { mount } from "@vue/test-utils";
 
 import Accordion from "@/components/shared/Accordion.vue";
 
-
 describe("Accordion", () => {
-    it("renders child", async () => {
-        const wrapper = mount(Accordion, {
-            global: {
-                stubs: {
-                    FontAwesomeIcon: true,
-                },
+    const createConfig = (config = {}) => ({
+        global: {
+            stubs: {
+                FontAwesomeIcon: true,
             },
-            props: {
-                header: "Test Header",
-            },
-            slots: {
-                default: "<h3>My nested child</h3>",
-            },
-        });
+        },
+        props: {
+            header: "Test Header",
+        },
+        slots: {
+            default: "<h3>My nested child</h3>"
+        },
+        ...config,
+    });
+    it("renders child", async() => {
+        const slots = {
+            default: "<h3>My nested child</h3>"
+        };
+        const config = { slots };
+        const wrapper = mount(Accordion, createConfig(config));
         expect(wrapper.text()).not.toMatch("My nested child");
-
         const clickableArea = wrapper.find("[data-test='clickable-area']");
         await clickableArea.trigger("click");
         expect(wrapper.text()).toMatch("My nested child");
+    });
+    describe("when slot content is not provided", () => {
+        it("renders default content", async() => {
+            const slots = {};
+            const config = { slots };
+            const wrapper = mount(Accordion, createConfig(config));
+            const clickableArea = wrapper.find("[data-test='clickable-area']");
+            await clickableArea.trigger("click");
+            expect(wrapper.text()).toMatch("Somebody give me something!");
+        });
     });
 });

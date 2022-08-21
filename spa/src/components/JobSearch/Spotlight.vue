@@ -1,0 +1,28 @@
+<template>
+	<ul>
+		<li v-for="spotlight in spotlights" :key="spotlight.id">{{spotlight.title}}</li>
+	</ul>
+</template>
+
+<script>
+	import axios from "axios";
+	export default {
+		name: "Spotlight",
+		data() {
+			return {
+				spotlights: [],
+			};
+		},
+		async mounted() {
+			const baseUrl = process.env.VUE_APP_API_URL;
+			const url = `${baseUrl}/spotlights/`;
+			try {
+				const response = await axios.get(url);
+				console.log(response.data);
+				this.spotlights = response.data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+	};
+</script>

@@ -13,6 +13,12 @@ const routes = [{
             import ("@/views/HomeView.vue"),
     },
     {
+        path: "/teams",
+        name: "teams",
+        component: () =>
+            import ( /* webpackChunkName: "teams" */ "@/views/TeamsView.vue"),
+    },
+    {
         path: "/jobs/results",
         name: "jobResults",
         component: () =>

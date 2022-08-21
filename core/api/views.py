@@ -21,9 +21,9 @@ from rest_framework import authentication, permissions, parsers, viewsets, mixin
 # from rest_framework.authentication import TokenAuthentication
 # from rest_framework.permissions import IsAuthenticated
 
-from core.models import Description, Job, Location, PreferredQualification, Qualification, User
+from core.models import Description, Job, Location, PreferredQualification, Qualification, Spotlight, User
 from .serializers import (
-    DescriptionSerializer, JobSerializer, LocationSerializer, PreferredQualificationSerializer, QualificationSerializer, UserSerializer, AuthTokenSerializer, 
+    DescriptionSerializer, JobSerializer, LocationSerializer, PreferredQualificationSerializer, QualificationSerializer, SpotlightSerializer, UserSerializer, AuthTokenSerializer, 
     ChangePasswordSerializer,
     )
 # from .pagination import PatientPagination, AppointmentPagination
@@ -112,5 +112,11 @@ class PreferredViewset(viewsets.ModelViewSet):
 class DescriptionViewset(viewsets.ModelViewSet):
     queryset = Description.objects.all()
     serializer_class = DescriptionSerializer
+    permission_classes = (permissions.AllowAny,)
+    lookup_field = 'id'
+
+class SpotlightViewset(viewsets.ModelViewSet):
+    queryset = Spotlight.objects.all()
+    serializer_class = SpotlightSerializer
     permission_classes = (permissions.AllowAny,)
     lookup_field = 'id'

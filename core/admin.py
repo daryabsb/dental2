@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
 
 from .models import (
+    Spotlight,
     User,
     Job,
     Qualification,
@@ -36,3 +37,4 @@ admin.site.register(Qualification)
 admin.site.register(PreferredQualification)
 admin.site.register(Description)
 admin.site.register(Location)
+admin.site.register(Spotlight)

@@ -3,7 +3,7 @@ from rest_framework import routers
 
 from .views import (
     CreateUserView, CreateTokenView, DescriptionViewset, LocationViewset, ManageUserView, 
-    ChangePasswordView,JobViewset, PreferredViewset, QualificationViewset)
+    ChangePasswordView,JobViewset, PreferredViewset, QualificationViewset, SpotlightViewset)
 
 
 router = routers.DefaultRouter()
@@ -12,6 +12,7 @@ router.register('locations', LocationViewset)
 router.register('qualifications', QualificationViewset)
 router.register('preferredqualifications', PreferredViewset)
 router.register('descriptions', DescriptionViewset)
+router.register('spotlights', SpotlightViewset)
 # router.register(r'Receive', api.ReceiveViewSet)
 
 

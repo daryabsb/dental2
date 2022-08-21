@@ -58,7 +58,7 @@
 					{
 						id: 1,
 						title: "Teams",
-						url: "/",
+						url: "/teams",
 					},
 					{
 						id: 2,
