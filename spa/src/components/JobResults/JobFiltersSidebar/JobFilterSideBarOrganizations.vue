@@ -10,6 +10,7 @@
 							:value="organization"
 							type="checkbox"
 							class="mr-3"
+							@change="selectOrganization"
 						/>
 						<label :for="organization" data-test="organization">{{organization}}</label>
 					</li>
@@ -37,6 +38,11 @@
 			// 	return this.$store.getters.UNIQUE_ORGANIZATIONS;
 			// },
 			...mapGetters(["UNIQUE_ORGANIZATIONS"]),
+		},
+		methods: {
+			selectOrganization() {
+				console.log(this.selectedOrganizations);
+			},
 		},
 	};
 </script>
