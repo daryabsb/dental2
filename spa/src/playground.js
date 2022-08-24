@@ -1,16 +1,37 @@
+/* -- Working with js FILTERS function -- */
+
+// const numbers = [1, 3, 5, 7, 2, 9, 11, 6]
+// const filNumbers = numbers.filter((number) => number > 6);
+
+const jobs = [
+    { title: "Angular Developer", organization: "Google", },
+    { title: "Programmer", organization: "Microsoft", },
+    { title: "DEveloper", organization: "Microsoft", },
+]
+const filNumbers = jobs.filter((job) => job.organization === "Microsoft");
+
+console.log(filNumbers);
+
+
+
+
+
+
+
+
 /* -- Working with js SET function -- */
 // Array - order
 // Object - Association
 // Set - Uniqueness
 
-const numbers = new Set();
-numbers.add(5);
-numbers.add(10);
-numbers.add(15);
-numbers.add(5);
-numbers.add(25);
+// const numbers = new Set();
+// numbers.add(5);
+// numbers.add(10);
+// numbers.add(15);
+// numbers.add(5);
+// numbers.add(25);
 
-console.log(numbers);
+// console.log(numbers);
 
 
 

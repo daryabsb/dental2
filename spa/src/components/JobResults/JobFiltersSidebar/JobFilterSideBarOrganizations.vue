@@ -10,6 +10,7 @@
 							:value="organization"
 							type="checkbox"
 							class="mr-3"
+							:data-test="organization"
 							@change="selectOrganization"
 						/>
 						<label :for="organization" data-test="organization">{{organization}}</label>
@@ -21,8 +22,10 @@
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
+	import { mapActions, mapGetters, mapMutations } from "vuex";
 	import Accordion from "@/components/shared/Accordion.vue";
+	import { FILTER_JOBS, ADD_SELECTED_ORGANIZATIONS, UNIQUE_ORGANIZATIONS, JOBS_GETTER } from "@/store/constants";
+
 	export default {
 		name: "JobFilterSideBarOrganizations",
 		components: {
@@ -37,11 +40,16 @@
 			// UNIQUE_ORGANIZATIONS() {
 			// 	return this.$store.getters.UNIQUE_ORGANIZATIONS;
 			// },
-			...mapGetters(["UNIQUE_ORGANIZATIONS"]),
+			...mapGetters([UNIQUE_ORGANIZATIONS],[JOBS_GETTER],),
 		},
 		methods: {
+			...mapMutations([ADD_SELECTED_ORGANIZATIONS]),
+			
+			...mapActions([FILTER_JOBS]),
 			selectOrganization() {
-				console.log(this.selectedOrganizations);
+				this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations);
+				this.$router.push("/jobs/results/?page=1")
+				this.$store.dispatch("FILTER_JOBS",Array.from(this.selectedOrganizations).join(","));
 			},
 		},
 	};

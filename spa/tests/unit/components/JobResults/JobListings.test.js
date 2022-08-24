@@ -1,6 +1,7 @@
 import { shallowMount, flushPromises, RouterLinkStub } from "@vue/test-utils";
 
 import JobListings from "@/components/JobResults/JobListings.vue";
+// import { state, getters } from "@/store";
 
 describe("JobListings", () => {
     const createRoute = (queryParams = {}) => ({
@@ -10,9 +11,11 @@ describe("JobListings", () => {
         },
     });
     const createStore = (config = {}) => ({
-        state: {
-            jobs: Array(15).fill({}),
-            maxJobs: 15,
+
+        getters: {
+            MAX_JOBS: 15,
+            FILTERED_JOBS_BY_ORGANIZATIONS: [],
+
         },
         dispatch: jest.fn(),
         ...config,
@@ -32,10 +35,11 @@ describe("JobListings", () => {
         it("it makes call to fetch jobs from API", () => {
             const $route = createRoute();
             const dispatch = jest.fn();
+            // const FILTERED_JOBS_BY_ORGANIZATIONS = jest.fn();
             const $store = createStore({
                 dispatch,
             });
-            const wrapper = shallowMount(JobListings, createConfig($route, $store));
+            shallowMount(JobListings, createConfig($route, $store));
             expect(dispatch).toHaveBeenCalledWith("FETCH_JOBS");
         });
     });
@@ -50,10 +54,10 @@ describe("JobListings", () => {
         const $route = createRoute({ page: "1" });
         const numberOfJobsInStore = 15;
         const $store = createStore({
-            state: {
-                jobs: Array(numberOfJobsInStore).fill({}),
-                maxJobs: numberOfJobsInStore,
-            }
+            getters: {
+                MAX_JOBS: numberOfJobsInStore,
+                FILTERED_JOBS_BY_ORGANIZATIONS: Array(numberOfJobsInStore).fill({}),
+            },
         })
         const wrapper = shallowMount(JobListings, createConfig($route, $store));
         await flushPromises();
@@ -70,7 +74,7 @@ describe("JobListings", () => {
             expect(wrapper.text()).toMatch("Page 1");
         });
     });
-    describe("whhen query params include page number", () => {
+    describe("when query params include page number", () => {
         it("displays page number 3", async() => {
             // axios.get.mockResolvedValue({ data: Array(10).fill({}) });
             const queryParams = { page: "3" };
@@ -94,13 +98,11 @@ describe("JobListings", () => {
         it("shows link to next page", async() => {
             const queryParams = { page: "1" };
             const $route = createRoute(queryParams);
-            const numberOfJobsInStore = 15;
             const $store = createStore({
-                state: {
-                    jobs: Array(numberOfJobsInStore).fill({}),
-                    maxJobs: numberOfJobsInStore,
+                getters: {
+                    FILTERED_JOBS_BY_ORGANIZATIONS: Array(15).fill({}),
                 }
-            })
+            });
             const wrapper = shallowMount(JobListings, createConfig($route, $store));
             await flushPromises();
             const nextPage = wrapper.find("[data-test='next-page-link']")
@@ -131,7 +133,10 @@ describe("JobListings", () => {
             const $store = createStore({
                 state: {
                     jobs: Array(numberOfJobsInStore).fill({}),
-                    maxJobs: numberOfJobsInStore,
+                },
+                getters: {
+                    MAX_JOBS: numberOfJobsInStore,
+                    FILTERED_JOBS_BY_ORGANIZATIONS: Array(numberOfJobsInStore).fill({}),
                 }
             });
             const wrapper = shallowMount(JobListings, createConfig($route, $store));

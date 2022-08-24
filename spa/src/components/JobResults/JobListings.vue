@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-// import { FETCH_JOBS } from "@/store";
+import { mapGetters, mapActions } from "vuex";
+import { MAX_JOBS,FETCH_JOBS, FILTERED_JOBS_BY_ORGANIZATIONS } from "@/store/constants";
 import JobListing from "./JobListing.vue";
 export default {
   name: "JobListings",
@@ -49,6 +49,8 @@ export default {
     };
   },
   computed: {
+    ...mapGetters([FILTERED_JOBS_BY_ORGANIZATIONS], [MAX_JOBS]),
+
     currentPage() {
       const pageString = this.$route.query.page || "1";
       return Number.parseInt(pageString);
@@ -60,17 +62,19 @@ export default {
     },
     nextPage() {
       const nextPage = this.currentPage + 1;
-      const maxPage = Math.ceil(this.maxJobs / 10);
+      const maxPage = Math.ceil(this.FILTERED_JOBS_BY_ORGANIZATIONS.length / 10);
       return nextPage <= maxPage ? nextPage : undefined;
     },
+   
     displayedJobs() {
       const firstJobIndex = (this.currentPage - 1) * 10;
       const lastJobIndex = this.currentPage * 10;
-      return this.jobs.slice(firstJobIndex, lastJobIndex);
+      return this.FILTERED_JOBS_BY_ORGANIZATIONS.slice(firstJobIndex, lastJobIndex);
     },
-    ...mapState(["jobs", "maxJobs"]),
   },
   async mounted() {
+        // console.log("MOUNT CALLED");
+
     try {
       await this.FETCH_JOBS();
       // this.maxJobs = await this.jobs.length;
@@ -79,7 +83,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["FETCH_JOBS"]),
+    ...mapActions([FETCH_JOBS]),
+
   },
 };
 </script>

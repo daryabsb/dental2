@@ -1,6 +1,8 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 from django.db.models import Q
 
 from datetime import datetime, timedelta, date as dt
@@ -89,7 +91,49 @@ class JobViewset(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
     permission_classes = (permissions.AllowAny,)
+    filter_backends = [DjangoFilterBackend]
     lookup_field = 'id'
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        # print(self.request.query_params)
+        queryset = Job.objects.all()
+        
+        # PERFORM FILTER BY SEARCH INPUT
+        conditions = Q()
+        org_keywords = self.request.query_params.get('organization', None)
+        job_type_keywords = self.request.query_params.get('job-type', None)
+        # organizations_keywords = self.request.GET.getlist("organization")
+        # print(keywords)
+        if org_keywords is not None:
+            
+            org_keywords_list = org_keywords.split(',') 
+            print("organiztion= ",org_keywords_list)
+
+        if job_type_keywords is not None:
+            
+            job_type_keywords_list = job_type_keywords.split(',') 
+            print("jobType= ",job_type_keywords_list)
+            
+            # print(keywords_list)
+            # for word in keywords_list:
+                # print (f'This word is: {word}')
+            
+            conditions |= Q(organization__in=org_keywords_list) | Q(jobType__in=job_type_keywords_list)
+
+            
+            if conditions:
+                # print(type(conditions))
+                queryset = Job.objects.filter(conditions)
+                print(len(queryset))
+
+        # PERFORM FILTER BY DATE
+        # JOB OBJECT DOESNT HAVE DATE
+
+        return queryset
 
 class LocationViewset(viewsets.ModelViewSet):
     queryset = Location.objects.all()

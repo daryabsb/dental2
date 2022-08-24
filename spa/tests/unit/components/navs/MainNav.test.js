@@ -1,4 +1,4 @@
-import { mount, shallowMount, RouterLinkStub } from "@vue/test-utils";
+import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 
 // import { createStore } from "vuex";
 

@@ -4,7 +4,7 @@
       <div v-if="onJobResultsPage" data-test="job-count">
         <font-awesome-icon :icon="['fas', 'search']" class="mr-3" />
         <span>
-          <span class="text-brand-green-1 mr-2">5233</span>Jobs matched
+          <span class="text-brand-green-1 mr-2">{{MAX_JOBS}}</span> jobs matched
         </span>
       </div>
     </div>
@@ -12,10 +12,14 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+import {MAX_JOBS} from "@/store/constants";
 export default {
   name: "SubNav",
   computed: {
+...mapGetters([MAX_JOBS]),
     onJobResultsPage() {
+      
       return this.$route.name === "jobResults";
     },
   },

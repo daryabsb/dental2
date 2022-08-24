@@ -1,4 +1,5 @@
 <template>
+<div>
 	<header :class="['w-full', 'text-sm', headerHeightClass]">Main Nav</header>
 	<div class="fixed top-0 left-0 w-full h-16 bg-white">
 		<div class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1">
@@ -32,6 +33,7 @@
 		</div>
 		<sub-nav v-if="isLoggedIn" data-test="sub-nav"></sub-nav>
 	</div>
+	</div>
 </template>
 
 <script>
@@ -41,7 +43,7 @@
 	import ProfileImage from "@/components/navs/ProfileImage.vue";
 	import SubNav from "@/components/navs/SubNav.vue";
 
-	import { LOGIN_USER } from "@/store";
+	import { LOGIN_USER } from "@/store/constants";
 
 	export default {
 		name: "MainNav",
