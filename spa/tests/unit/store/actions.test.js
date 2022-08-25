@@ -27,17 +27,49 @@ describe("actions", () => {
 
         beforeEach(() => {
             filterJobs.mockResolvedValue([{
-                id: 1,
-                title: "Software Developer",
-                organization: "Microsoft",
-            }]);
+                    id: 1,
+                    title: "Software Developer",
+                    organization: "Microsoft",
+                    jobType: ""
+                },
+                {
+                    id: 2,
+                    title: "Python Developer",
+                    organization: "Google",
+                    jobType: ""
+                },
+                {
+                    id: 3,
+                    title: "Vue Developer",
+                    organization: "Amazon",
+                    jobType: "Intern"
+                },
+                {
+                    id: 4,
+                    title: "Java Developer",
+                    organization: "Microsoft",
+                    jobType: "Part-time"
+                },
+            ]);
         });
 
         it("makes request to filter jobs", async() => {
-            const context = { commit: jest.fn() };
-            const organization = "Microsoft";
-            await actions.FILTER_JOBS(context, organization);
-            expect(filterJobs).toHaveBeenCalledWith([organization])
+            const context = {
+                commit: jest.fn(),
+                state: {
+                    selectedOrganizations: ["Microsoft", "Google"],
+                },
+                selectedJobTypes: ["Intern", "Part-time"],
+            };
+            const payload = {
+                organization: context.state.selectedOrganizations,
+                jobType: context.state.selectedJobTypes
+            };
+            await actions.FILTER_JOBS(context, payload);
+            expect(filterJobs).toHaveBeenCalledWith({
+                organization: "Microsoft,Google",
+                jobType: "Intern,Part-time",
+            })
         });
         // it("makes request to fetch jobs", () => {});
     });

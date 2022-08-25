@@ -16,13 +16,14 @@ describe("filterJobs", () => {
         })
     });
     describe("creates url based on given payload", () => {
+
         it("returns base url", async() => {
             await filterJobs();
             expect(axios.get).toHaveBeenCalledWith("http://myfakeapi.com/jobs/");
         });
         it("returns base url + payload", async() => {
-            await filterJobs("google");
-            expect(axios.get).toHaveBeenCalledWith("http://myfakeapi.com/jobs/?organization=google");
+            await filterJobs({ organization: ["Google", "Microsoft"], jobType: ["Intern", "Part-time"] });
+            expect(axios.get).toHaveBeenCalledWith("http://myfakeapi.com/jobs/?organization=Google,Microsoft&job-type=Intern,Part-time");
         });
     });
     it("extract jobs from response", async() => {

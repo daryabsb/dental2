@@ -1,16 +1,17 @@
 import axios from "axios";
 const filterJobs = async(payload) => {
-    console.log("type of payload from filterJobs test: ", typeof(payload));
-    console.log("payload from filterJobs test: ", payload);
+
     const baseUrl = `${process.env.VUE_APP_API_URL}/jobs/`;
+    let orgKeyword, jobTypeKeyword, url;
+    if (payload != undefined) {
+        orgKeyword = payload.organization === undefined ? "" : `organization=${payload.organization}`
+        jobTypeKeyword = payload.jobType === undefined ? "" : `job-type=${payload.jobType}`
+        let urlKeywords = `?${orgKeyword}&${jobTypeKeyword}`;
+        url = `${baseUrl}${urlKeywords}`
+    } else {
+        url = baseUrl;
+    }
 
-    const orgKeyword = payload.organization ? `organization=${payload.organization}` : ""
-    const jobTypeKeyword = payload.jobType ? `job-type=${payload.jobType}` : ""
-    let urlKeywords = `?${orgKeyword}&${jobTypeKeyword}`;
-    let url;
-    url = `${baseUrl}${urlKeywords}`
-
-    console.log(url);
 
     try {
 

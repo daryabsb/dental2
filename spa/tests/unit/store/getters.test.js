@@ -86,6 +86,62 @@ describe("getters", () => {
             ]);
         })
     });
+
+
+    // describe("FILTERED_JOBS_BY_JOB_TYPES", () => {
+    //     beforeEach(() => {
+    //         filterJobs.mockResolvedValue([{
+    //                 id: 1,
+    //                 title: "Python Developer",
+    //                 jobType: "Intern"
+    //             },
+    //             {
+    //                 id: 2,
+    //                 title: "Python Developer",
+    //                 jobType: "Temporary"
+    //             }
+    //         ]);
+    //     });
+    // it("identifies jobs that are associated with given job types", () => {
+
+    //     const state = {
+    //         jobs: [
+    //             { jobType: "Intern" },
+    //             { jobType: "Part-time" },
+    //             { jobType: "Temporary" },
+    //         ],
+    //         selectedJobTypes: ["Intern", "Temporary"],
+    //     };
+    //     const filteredJobs = getters.FILTERED_JOBS_BY_JOB_TYPES(state)
+    //     expect(filteredJobs).toEqual([{
+    //             jobType: "Intern"
+    //         },
+    //         {
+    //             jobType: "Temporary"
+    //         }
+    //     ]);
+    // });
+    // });
+    describe("when user did not select any job types", () => {
+        it("should return all the jobs", () => {
+            const state = {
+                jobs: [
+                    { jobType: "Intern" },
+                    { jobType: "Part-time" },
+                    { jobType: "Temporary" },
+                ],
+                selectedJobTypes: [],
+            };
+            const filteredJobs = getters.FILTERED_JOBS_BY_JOB_TYPES(state)
+            expect(filteredJobs).toEqual([
+                { jobType: "Intern" },
+                { jobType: "Part-time" },
+                { jobType: "Temporary" },
+            ]);
+        });
+    });
+
+
     describe("MAX_JOBS", () => {
         beforeEach(() => {
             filterJobs.mockResolvedValue([{

@@ -21,7 +21,7 @@ const actions = {
         }
     },
 
-    [FILTER_JOBS]: async(context, payload) => {
+    [FILTER_JOBS]: async(context) => {
         const selectedjobTypes = ["Intern", "Part-time"]
         const selectedOrganizationsKeywords =
             Array.from(context.state.selectedOrganizations).join(",");
