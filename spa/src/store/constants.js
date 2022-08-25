@@ -8,6 +8,7 @@ export const MAX_JOBS = "MAX_JOBS";
 export const FILTER_JOBS = "FILTER_JOBS";
 export const FILTERED_JOBS = "FILTERED_JOBS";
 export const FILTER_JOBS_IN_STATE = "FILTER_JOBS_IN_STATE";
+export const CLEAR_FILTERED_JOBS = "CLEAR_FILTERED_JOBS";
 
 
 /* ORGANIZATIONS */

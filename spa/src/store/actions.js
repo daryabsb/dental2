@@ -6,11 +6,10 @@ import {
     FILTER_JOBS,
     RECEIVE_JOBS,
     FILTER_JOBS_IN_STATE,
-    UNIQUE_ORGANIZATIONS,
 } from "@/store/constants";
 
 const actions = {
-    [FETCH_JOBS]: async(context) => {
+    [FETCH_JOBS]: async (context) => {
         try {
             const jobListings = await getJobs();
             await context.commit(RECEIVE_JOBS, jobListings);
@@ -21,30 +20,17 @@ const actions = {
         }
     },
 
-    [FILTER_JOBS]: async(context) => {
-        const selectedjobTypes = ["Intern", "Part-time"]
-        const selectedOrganizationsKeywords =
-            Array.from(context.state.selectedOrganizations).join(",");
-        const selectedJobTypesKeywords =
-            Array.from(selectedjobTypes).join(",")
-        console.log(selectedJobTypesKeywords);
+    [FILTER_JOBS]: async (context) => {
+        let input = [];
+        const payloadInput = input.concat(
+            Array.from(context.state.selectedOrganizations),
+            Array.from(context.state.selectedJobTypes)
+        ).join(",");
+        // console.log(payloadInput);
+        const filteredJobsResponse = await filterJobs(payloadInput)
 
-        const filteredJobKeywordsObject = {
-            organization: selectedOrganizationsKeywords,
-            jobType: selectedJobTypesKeywords,
-        }
-        const filteredJobsResponse = await filterJobs(filteredJobKeywordsObject)
-            // console.log("action filter", filteredJobs);
         await context.commit(FILTER_JOBS_IN_STATE, filteredJobsResponse);
-
     },
-    // [FILTER_JOBS]: async(context, payload) => {
-    //     // console.log("from Actions: ", payload);
-    //     const filteredJobsResponse = await filterJobs([payload])
-    //         // console.log("action filter", filteredJobs);
-    //     await context.commit(FILTER_JOBS_IN_STATE, filteredJobsResponse);
-
-    // },
 
 };
 

@@ -108,22 +108,28 @@ class JobViewset(viewsets.ModelViewSet):
         
         # PERFORM FILTER BY SEARCH INPUT
         conditions = Q()
-        keywords = self.request.query_params.get('input', None)
+        org_keywords = self.request.query_params.get('organization', None)
+        job_type_keywords = self.request.query_params.get('job-type', None)
+        # organizations_keywords = self.request.GET.getlist("organization")
         # print(keywords)
-        if keywords:
-            
-            keywords_list = keywords.split(',') 
-            # print(keywords_list)
-            # for word in keywords_list:
-            conditions |= Q(
-                organization__in=keywords_list
-                ) | Q(
-                    jobType__in=keywords_list
-                    )
-    
-            if conditions:
-                # print(type(conditions))
-                queryset = Job.objects.filter(conditions)
+        if org_keywords is not None:
+            org_keywords_list = org_keywords.split(',')
+            print("organiztion= ", org_keywords_list)
+
+        if job_type_keywords is not None:
+            job_type_keywords_list = job_type_keywords.split(',')
+            print("jobType=", job_type_keywords_list)
+
+            conditions |= Q(organization__in=org_keywords_list) | Q(jobType__in=job_type_keywords_list)
+
+        if conditions:
+            print(conditions)
+            # print(type(conditions))
+            queryset = Job.objects.filter(conditions)
+            print(len(queryset))
+
+            # PERFORM FILTER BY DATE
+            # JOB OBJECT DOESNT HAVE DATE
 
         return queryset
 

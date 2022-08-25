@@ -20,6 +20,7 @@ const mutations = {
     },
 
     [FILTER_JOBS_IN_STATE](state, payload) {
+        // console.log(payload);
         state.filteredJobs = payload;
     },
 
