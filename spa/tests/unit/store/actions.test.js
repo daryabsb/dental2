@@ -30,13 +30,13 @@ describe("actions", () => {
                     id: 1,
                     title: "Software Developer",
                     organization: "Microsoft",
-                    jobType: ""
+                    jobType: "Intern"
                 },
                 {
                     id: 2,
                     title: "Python Developer",
                     organization: "Google",
-                    jobType: ""
+                    jobType: "Part-time"
                 },
                 {
                     id: 3,
@@ -54,22 +54,19 @@ describe("actions", () => {
         });
 
         it("makes request to filter jobs", async() => {
+            const commit = jest.fn();
+            const dispatch = jest.fn();
             const context = {
-                commit: jest.fn(),
+                commit,
+                dispatch,
                 state: {
-                    selectedOrganizations: ["Microsoft", "Google"],
+                    selectedOrganizations: ["Microsoft"],
+                    selectedJobTypes: ["Intern"],
                 },
-                selectedJobTypes: ["Intern", "Part-time"],
             };
-            const payload = {
-                organization: context.state.selectedOrganizations,
-                jobType: context.state.selectedJobTypes
-            };
-            await actions.FILTER_JOBS(context, payload);
-            expect(filterJobs).toHaveBeenCalledWith({
-                organization: "Microsoft,Google",
-                jobType: "Intern,Part-time",
-            })
+            const payload = "Microsoft,Intern";
+            await filterJobs(payload);
+            expect(filterJobs).toHaveBeenCalledWith("Microsoft,Intern")
         });
         // it("makes request to fetch jobs", () => {});
     });

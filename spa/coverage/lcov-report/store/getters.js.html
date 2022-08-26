@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/11</span>
+                <span class='fraction'>14/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>12/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,7 +93,18 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -101,56 +112,72 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
     UNIQUE_ORGANIZATIONS,
+    UNIQUE_JOB_TYPES,
     FILTERED_JOBS_BY_ORGANIZATIONS,
+    FILTERED_JOBS_BY_JOB_TYPES,
     MAX_JOBS,
 } from "@/store/constants";
 &nbsp;
 const getters = {
-<span class="fstat-no" title="function not covered" >    [U</span>NIQUE_ORGANIZATIONS](state) {
-        const uniqueOrganizations = <span class="cstat-no" title="statement not covered" >new Set();</span>
-<span class="cstat-no" title="statement not covered" >        state.jobs.forEach(<span class="fstat-no" title="function not covered" >(j</span>ob) =&gt; <span class="cstat-no" title="statement not covered" >uniqueOrganizations.add(job.organization))</span>;</span>
-<span class="cstat-no" title="statement not covered" >        return uniqueOrganizations;</span>
+    [UNIQUE_ORGANIZATIONS](state) {
+        const uniqueOrganizations = new Set();
+        state.jobs.forEach((job) =&gt; uniqueOrganizations.add(job.organization));
+        return uniqueOrganizations;
     },
-<span class="fstat-no" title="function not covered" >    [F</span>ILTERED_JOBS_BY_ORGANIZATIONS](state) {
-<span class="cstat-no" title="statement not covered" >        if (state.selectedOrganizations.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >            return state.jobs</span>
+    [UNIQUE_JOB_TYPES](state) {
+        const uniqueJobTypes = new Set();
+        state.jobs.forEach((job) =&gt; uniqueJobTypes.add(job.jobType));
+        return uniqueJobTypes;
+    },
+    [FILTERED_JOBS_BY_ORGANIZATIONS](state) {
+        if (state.selectedOrganizations.length === 0) {
+            return state.jobs
         } else {
-<span class="cstat-no" title="statement not covered" >            return state.filteredJobs</span>
+            return state.filteredJobs
         }
         // return state.jobs.filter((job) =&gt; state.selectedOrganizations.includes(job.organization))
         // return state.filteredJobs;
     },
-<span class="fstat-no" title="function not covered" >    [M</span>AX_JOBS](state) {
-<span class="cstat-no" title="statement not covered" >        if (state.selectedOrganizations.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >            return state.jobs.length</span>
-        } else {
-<span class="cstat-no" title="statement not covered" >            return state.filteredJobs.length</span>
+    [FILTERED_JOBS_BY_JOB_TYPES](state) {
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (state.selectedJobTypes.length === 0) {
+            return state.jobs
         }
+<span class="cstat-no" title="statement not covered" >        return state.filteredJobs;</span>
     },
+&nbsp;
+&nbsp;
 };
 &nbsp;
 export default getters;</pre></td></tr></table></pre>
@@ -160,7 +187,7 @@ export default getters;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-24T03:56:44.143Z
+                at 2022-08-26T11:26:03.379Z
             </div>
         <script src="../prettify.js"></script>
         <script>

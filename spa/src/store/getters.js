@@ -3,8 +3,6 @@ import {
     UNIQUE_JOB_TYPES,
     FILTERED_JOBS_BY_ORGANIZATIONS,
     FILTERED_JOBS_BY_JOB_TYPES,
-
-    FILTERED_JOBS,
     MAX_JOBS,
 } from "@/store/constants";
 
@@ -29,30 +27,14 @@ const getters = {
         // return state.filteredJobs;
     },
     [FILTERED_JOBS_BY_JOB_TYPES](state) {
+
         if (state.selectedJobTypes.length === 0) {
             return state.jobs
-        } else {
-            return state.filteredJobs
         }
-        // return state.jobs.filter((job) => state.selectedOrganizations.includes(job.organization))
-        // return state.filteredJobs;
+        return state.filteredJobs;
     },
 
-    [FILTERED_JOBS](state) {
-        // console.log("typeOf:", state.filteredJobs.length);
-        if (state.filteredJobs.length === undefined) {
-            return state.jobs
-        } else {
-            return state.filteredJobs
-        }
-    },
-    [MAX_JOBS](state) {
-        if ((state.selectedJobTypes.length === 0) && (state.selectedOrganizations.length === 0)) {
-            return state.jobs.length
-        } else {
-            return this.filteredJobs.length
-        }
-    },
+
 };
 
 export default getters;

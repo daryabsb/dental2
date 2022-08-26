@@ -1,24 +1,24 @@
 <template>
-	<accordion header="Job Types">
+	<accordion header="Job Type">
 		<div class="mt-5">
 			<fieldset>
 				<ul class="flex flex-row flex-wrap">
 					<li
-						v-for="jobType in UNIQUE_JOB_TYPES"
-						:key="jobType"
+						v-for="jobtype in UNIQUE_JOB_TYPES"
+						:key="jobtype"
 						class="w-1/2 h-8"
 					>
 						<input
-							:id="jobType"
+							:id="jobtype"
 							v-model="selectedJobTypes"
-							:value="jobType"
+							:value="jobtype"
 							type="checkbox"
 							class="mr-3"
-							:data-test="jobType"
-							@change="selectJobType"
+							:data-test="jobtype"
+							@change="selectJobTypes"
 						/>
-						<label :for="jobType" data-test="job-type">{{
-							jobType
+						<label :for="jobtype" data-test="job-type">{{
+							jobtype
 						}}</label>
 					</li>
 				</ul>
@@ -48,16 +48,18 @@
 			};
 		},
 		computed: {
+			// UNIQUE_JOB_TYPES() {
+			// 	return this.$store.getters.UNIQUE_JOB_TYPES;
+			// },
 			...mapGetters([UNIQUE_JOB_TYPES], [JOBS_GETTER]),
 		},
 		methods: {
 			...mapMutations([ADD_SELECTED_JOB_TYPES]),
 
 			...mapActions([FILTER_JOBS]),
-			selectJobType() {
-				this.ADD_SELECTED_JOB_TYPES(this.selectedJobTypes);
-				this.$router.push("/jobs/results/?page=1");
-				this.$store.dispatch("FILTER_JOBS");
+			async selectJobTypes() {
+				await this.ADD_SELECTED_JOB_TYPES(this.selectedJobTypes);
+				await this.$store.dispatch("FILTER_JOBS");
 			},
 		},
 	};

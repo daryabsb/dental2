@@ -19,14 +19,14 @@ const mutations = {
         state.selectedOrganizations = payload;
     },
 
+    [ADD_SELECTED_JOB_TYPES](state, payload) {
+        state.selectedJobTypes = payload;
+    },
     [FILTER_JOBS_IN_STATE](state, payload) {
         // console.log(payload);
         state.filteredJobs = payload;
     },
 
-    [ADD_SELECTED_JOB_TYPES](state, payload) {
-        state.selectedJobTypes = payload;
-    },
 
 };
 

@@ -1,24 +1,25 @@
 import axios from "axios";
-const filterJobs = async (payload) => {
-
+const filterJobs = async(payload) => {
+    // console.log("Payload is empy", payload);
     const baseUrl = `${process.env.VUE_APP_API_URL}/jobs/`;
     let inputKeyword, url;
 
-    if (payload === "") {
-        url = baseUrl;
-    } else {
+    if (payload) {
         inputKeyword = `?input=${payload}`
         url = `${baseUrl}${inputKeyword}`
-    }
-    console.log(url);
+        console.log(url);
 
-    try {
+        try {
 
-        const response = await axios.get(url);
+            const response = await axios.get(url);
 
-        return Array.from(response.data);
-    } catch (err) {
-        console.log("from filterJob Error", err);
+            return response.data;
+        } catch (err) {
+            console.log("from filterJob Error", err);
+        }
+
+    } else {
+        return [];
     }
 };
 

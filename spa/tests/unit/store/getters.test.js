@@ -142,59 +142,6 @@ describe("getters", () => {
     });
 
 
-    describe("MAX_JOBS", () => {
-        beforeEach(() => {
-            filterJobs.mockResolvedValue([{
-                id: 1,
-                title: "Software Developer",
-                organization: "Google"
-            }]);
-        });
-        it("shows the length of the filtered jobs array", () => {
-            const state = {
-                jobs: [{
-                        id: 1,
-                        title: "Software Developer",
-                        organization: "Google"
-                    },
-                    {
-                        id: 2,
-                        title: "Python Developer",
-                        organization: "Microsoft"
-                    }
-                ],
-                selectedOrganizations: ["Google"],
-                filteredJobs: [{
-                    id: 1,
-                    title: "Software Developer",
-                    organization: "Google"
-                }],
-            };
 
-            const maxJobs = getters.MAX_JOBS(state);
-            expect(maxJobs).toEqual(1);
-        });
-        it("shows the length of the jobs array", async() => {
-            const state = {
-                jobs: [{
-                        id: 1,
-                        title: "Software Developer",
-                        organization: "Google"
-                    },
-                    {
-                        id: 2,
-                        title: "Python Developer",
-                        organization: "Microsoft"
-                    }
-                ],
-                selectedOrganizations: [],
-                filteredJobs: [],
-            };
-            const maxJobs = getters.MAX_JOBS(state);
-            expect(maxJobs).toEqual(2);
-        });
-
-
-    });
 
 });
