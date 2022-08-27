@@ -37,14 +37,14 @@ describe("MainNav", () => {
         const navMenuItems = wrapper.findAll("[data-test='main-nav-list-item']");
         const navMenuText = navMenuItems.map((item) => item.text());
         expect(navMenuText).toEqual([
-                'Teams',
-                'Locations',
-                'Life at ARON',
-                'How we hire',
-                'Students',
-                'Jobs'
-            ])
-            // console.log(navMenuText);
+            'Teams',
+            'Locations',
+            'Life at ARON',
+            'How we hire',
+            'Students',
+            'Jobs'
+        ])
+        // console.log(navMenuText);
     })
     describe("when user is logged out", () => {
         it("prompts user to sign in", () => {
@@ -59,7 +59,7 @@ describe("MainNav", () => {
             expect(loginButton.exists()).toBe(true);
 
         });
-        it("issues call login user", async() => {
+        it("issues call login user", async () => {
             // const store = createStore();
             const commit = jest.fn();
             const $store = {

@@ -1,5 +1,5 @@
 import axios from "axios";
-const filterJobs = async(payload) => {
+const filterJobs = async (payload) => {
     // console.log("Payload is empy", payload);
     const baseUrl = `${process.env.VUE_APP_API_URL}/jobs/`;
     let inputKeyword, url;
@@ -7,7 +7,7 @@ const filterJobs = async(payload) => {
     if (payload) {
         inputKeyword = `?input=${payload}`
         url = `${baseUrl}${inputKeyword}`
-        console.log(url);
+        // console.log(url);
 
         try {
 

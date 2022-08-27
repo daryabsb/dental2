@@ -6,7 +6,7 @@ jest.mock("@/api/filterJobs");
 
 describe("getters", () => {
     describe("UNIQUE_ORGANIZATIONS", () => {
-        it("finds unique organization from jobs", async() => {
+        it("finds unique organization from jobs", async () => {
             const state = {
                 jobs: [
                     { organization: "Google" },
@@ -21,7 +21,7 @@ describe("getters", () => {
 
     });
     describe("UNIQUE_JOB_TYPES", () => {
-        it("finds unique job types from jobs", async() => {
+        it("finds unique job types from jobs", async () => {
             const state = {
                 jobs: [
                     { jobType: "Intern" },
@@ -87,8 +87,73 @@ describe("getters", () => {
         })
     });
 
+    describe("when user did not select any job types", () => {
+        it("should return all the jobs", () => {
+            const state = {
+                jobs: [
+                    { jobType: "Intern" },
+                    { jobType: "Part-time" },
+                    { jobType: "Temporary" },
+                ],
+                selectedJobTypes: [],
+            };
+            const filteredJobs = getters.FILTERED_JOBS_BY_JOB_TYPES(state)
+            expect(filteredJobs).toEqual([
+                { jobType: "Intern" },
+                { jobType: "Part-time" },
+                { jobType: "Temporary" },
+            ]);
+        });
+    });
+    describe("INCLUDE_JOB_BY_ORGANIZATION", () => {
+        describe("when user has not selected any organizations", () => {
+            it("includes job", () => {
+                const state = {
+                    selectedOrganizations: [],
+                };
+                const job = { organization: "Google" };
+                const includeJob = getters.INCLUDE_JOB_BY_ORGANIZATION(state)(job);
+                expect(includeJob).toBe(true);
+            });
+            it("identifies if job is associated with given organization", () => {
+                const state = {
+                    selectedOrganizations: ["Google", "Microsoft"],
+                };
+                const job = { organization: "Google" };
+                const includeJob = getters.INCLUDE_JOB_BY_ORGANIZATION(state)(job);
+                expect(includeJob).toBe(true);
+            });
+        });
+    });
 
-    // describe("FILTERED_JOBS_BY_JOB_TYPES", () => {
+    describe("INCLUDE_JOB_BY_JOB_TYPES", () => {
+        describe("when user has not selected any job type", () => {
+            it("includes job", () => {
+                const state = {
+                    selectedJobTypes: [],
+                };
+                const job = { jobType: "Intern" };
+                const includeJob = getters.INCLUDE_JOB_BY_JOB_TYPE(state)(job);
+                expect(includeJob).toBe(true);
+            });
+            it("identifies if job is associated with given job types", () => {
+                const state = {
+                    selectedJobTypes: ["Intern", "Part-time"],
+                };
+                const job = { jobType: "Intern" };
+                const includeJob = getters.INCLUDE_JOB_BY_JOB_TYPE(state)(job);
+                expect(includeJob).toBe(true);
+            });
+        });
+    });
+
+
+
+
+});
+
+
+ // describe("FILTERED_JOBS_BY_JOB_TYPES", () => {
     //     beforeEach(() => {
     //         filterJobs.mockResolvedValue([{
     //                 id: 1,
@@ -122,26 +187,3 @@ describe("getters", () => {
     //     ]);
     // });
     // });
-    describe("when user did not select any job types", () => {
-        it("should return all the jobs", () => {
-            const state = {
-                jobs: [
-                    { jobType: "Intern" },
-                    { jobType: "Part-time" },
-                    { jobType: "Temporary" },
-                ],
-                selectedJobTypes: [],
-            };
-            const filteredJobs = getters.FILTERED_JOBS_BY_JOB_TYPES(state)
-            expect(filteredJobs).toEqual([
-                { jobType: "Intern" },
-                { jobType: "Part-time" },
-                { jobType: "Temporary" },
-            ]);
-        });
-    });
-
-
-
-
-});

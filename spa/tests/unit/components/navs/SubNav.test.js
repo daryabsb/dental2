@@ -1,4 +1,4 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 
 import SubNav from "@/components/navs/SubNav.vue"
 
@@ -23,21 +23,22 @@ describe("SubNav", () => {
             const routeName = "jobResults";
             const $store = {
                 getters: {
-                    FILTERED_JOBS_BY_ORGANIZATIONS: [
+                    FILTERED_JOBS: [
                         { organization: "Google" },
                         { organization: "Microsoft" }
                     ],
                 }
             }
-            const wrapper = mount(SubNav, createConfig(routeName, $store));
-            const jobCount = wrapper.find("[data-test='job-count']");
+            const wrapper = shallowMount(SubNav, createConfig(routeName, $store));
+            const jobCount = wrapper.find('[data-test="job-count"]');
+            console.log(jobCount.text());
             expect(jobCount.text()).toMatch("2 jobs matched");
         });
     });
     describe("when user is not on job page", () => {
         it("does not display job count", () => {
 
-            const wrapper = mount(SubNav, createConfig("home"));
+            const wrapper = shallowMount(SubNav, createConfig("home"));
             const jobCount = wrapper.find("[data-test='job-count']");
             expect(jobCount.exists()).toBe(false);
         });
