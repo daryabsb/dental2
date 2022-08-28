@@ -60,6 +60,7 @@
 			selectOrganization() {
 				this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations);
 				this.$store.dispatch("FILTER_JOBS");
+				this.$router.push({ name: "jobResults" });
 			},
 		},
 	};

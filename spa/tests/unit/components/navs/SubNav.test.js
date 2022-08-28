@@ -31,7 +31,7 @@ describe("SubNav", () => {
             }
             const wrapper = shallowMount(SubNav, createConfig(routeName, $store));
             const jobCount = wrapper.find('[data-test="job-count"]');
-            console.log(jobCount.text());
+            // console.log(jobCount.text());
             expect(jobCount.text()).toMatch("2 jobs matched");
         });
     });

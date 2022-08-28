@@ -57,9 +57,10 @@
 			...mapMutations([ADD_SELECTED_JOB_TYPES]),
 
 			...mapActions([FILTER_JOBS]),
-			async selectJobTypes() {
-				await this.ADD_SELECTED_JOB_TYPES(this.selectedJobTypes);
-				await this.$store.dispatch("FILTER_JOBS");
+			selectJobTypes() {
+				this.ADD_SELECTED_JOB_TYPES(this.selectedJobTypes);
+				this.$store.dispatch("FILTER_JOBS");
+				this.$router.push({ name: "jobResults" });
 			},
 		},
 	};

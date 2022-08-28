@@ -6,7 +6,7 @@ jest.mock("@/api/filterJobs");
 
 describe("getters", () => {
     describe("UNIQUE_ORGANIZATIONS", () => {
-        it("finds unique organization from jobs", async () => {
+        it("finds unique organization from jobs", async() => {
             const state = {
                 jobs: [
                     { organization: "Google" },
@@ -21,7 +21,7 @@ describe("getters", () => {
 
     });
     describe("UNIQUE_JOB_TYPES", () => {
-        it("finds unique job types from jobs", async () => {
+        it("finds unique job types from jobs", async() => {
             const state = {
                 jobs: [
                     { jobType: "Intern" },
@@ -86,7 +86,6 @@ describe("getters", () => {
             ]);
         })
     });
-
     describe("when user did not select any job types", () => {
         it("should return all the jobs", () => {
             const state = {
@@ -125,7 +124,6 @@ describe("getters", () => {
             });
         });
     });
-
     describe("INCLUDE_JOB_BY_JOB_TYPES", () => {
         describe("when user has not selected any job type", () => {
             it("includes job", () => {
@@ -146,44 +144,116 @@ describe("getters", () => {
             });
         });
     });
-
-
-
-
+    describe("FILTERED_JOB", () => {
+        it("filters jobs by organization and job type", () => {
+            const state = {
+                jobs: [
+                    { organization: "Google", jobType: "Part-time" },
+                    { organization: "Microsoft", jobType: "Intern" },
+                    { organization: "Amazon", jobType: "Full-time" },
+                ],
+                selectedOrganizations: ["Google"],
+                selectedJobTypes: ["Intern"],
+                filteredJobs: [
+                    { organization: "Google", jobType: "Part-time" },
+                    { organization: "Microsoft", jobType: "Intern" },
+                ],
+            }
+            const result = getters.FILTERED_JOBS(state);
+            expect(result).toEqual([
+                { organization: "Google", jobType: "Part-time" },
+                { organization: "Microsoft", jobType: "Intern" },
+            ]);
+        });
+        it("filters jobs by job type", () => {
+            const state = {
+                jobs: [
+                    { organization: "Google", jobType: "Part-time" },
+                    { organization: "Microsoft", jobType: "Intern" },
+                    { organization: "Amazon", jobType: "Full-time" },
+                ],
+                selectedOrganizations: [],
+                selectedJobTypes: ["Intern"],
+                filteredJobs: [
+                    { organization: "Microsoft", jobType: "Intern" },
+                ],
+            }
+            const result = getters.FILTERED_JOBS(state);
+            expect(result).toEqual([
+                { organization: "Microsoft", jobType: "Intern" },
+            ]);
+        });
+        it("filters jobs by organization", () => {
+            const state = {
+                jobs: [
+                    { organization: "Google", jobType: "Part-time" },
+                    { organization: "Microsoft", jobType: "Intern" },
+                    { organization: "Amazon", jobType: "Full-time" },
+                ],
+                selectedOrganizations: ["Google"],
+                selectedJobTypes: [],
+                filteredJobs: [
+                    { organization: "Google", jobType: "Part-time" },
+                ],
+            }
+            const result = getters.FILTERED_JOBS(state);
+            expect(result).toEqual([
+                { organization: "Google", jobType: "Part-time" },
+            ]);
+        });
+        it("when user does not select organization nor job type, returns all jobs", () => {
+            const state = {
+                jobs: [
+                    { organization: "Google", jobType: "Part-time" },
+                    { organization: "Microsoft", jobType: "Intern" },
+                    { organization: "Amazon", jobType: "Full-time" },
+                ],
+                selectedOrganizations: [],
+                selectedJobTypes: [],
+                filteredJobs: [],
+            }
+            const result = getters.FILTERED_JOBS(state);
+            expect(result).toEqual([
+                { organization: "Google", jobType: "Part-time" },
+                { organization: "Microsoft", jobType: "Intern" },
+                { organization: "Amazon", jobType: "Full-time" },
+            ]);
+        });
+    });
 });
 
 
- // describe("FILTERED_JOBS_BY_JOB_TYPES", () => {
-    //     beforeEach(() => {
-    //         filterJobs.mockResolvedValue([{
-    //                 id: 1,
-    //                 title: "Python Developer",
-    //                 jobType: "Intern"
-    //             },
-    //             {
-    //                 id: 2,
-    //                 title: "Python Developer",
-    //                 jobType: "Temporary"
-    //             }
-    //         ]);
-    //     });
-    // it("identifies jobs that are associated with given job types", () => {
+// describe("FILTERED_JOBS_BY_JOB_TYPES", () => {
+//     beforeEach(() => {
+//         filterJobs.mockResolvedValue([{
+//                 id: 1,
+//                 title: "Python Developer",
+//                 jobType: "Intern"
+//             },
+//             {
+//                 id: 2,
+//                 title: "Python Developer",
+//                 jobType: "Temporary"
+//             }
+//         ]);
+//     });
+// it("identifies jobs that are associated with given job types", () => {
 
-    //     const state = {
-    //         jobs: [
-    //             { jobType: "Intern" },
-    //             { jobType: "Part-time" },
-    //             { jobType: "Temporary" },
-    //         ],
-    //         selectedJobTypes: ["Intern", "Temporary"],
-    //     };
-    //     const filteredJobs = getters.FILTERED_JOBS_BY_JOB_TYPES(state)
-    //     expect(filteredJobs).toEqual([{
-    //             jobType: "Intern"
-    //         },
-    //         {
-    //             jobType: "Temporary"
-    //         }
-    //     ]);
-    // });
-    // });
+//     const state = {
+//         jobs: [
+//             { jobType: "Intern" },
+//             { jobType: "Part-time" },
+//             { jobType: "Temporary" },
+//         ],
+//         selectedJobTypes: ["Intern", "Temporary"],
+//     };
+//     const filteredJobs = getters.FILTERED_JOBS_BY_JOB_TYPES(state)
+//     expect(filteredJobs).toEqual([{
+//             jobType: "Intern"
+//         },
+//         {
+//             jobType: "Temporary"
+//         }
+//     ]);
+// });
+// });

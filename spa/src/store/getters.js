@@ -24,8 +24,8 @@ const getters = {
             return state.filteredJobs
         }
         return state.jobs
-        // return state.jobs.filter((job) => state.selectedOrganizations.includes(job.organization))
-        // return state.filteredJobs;
+            // return state.jobs.filter((job) => state.selectedOrganizations.includes(job.organization))
+            // return state.filteredJobs;
     },
     [FILTERED_JOBS_BY_JOB_TYPES](state) {
 
@@ -43,13 +43,13 @@ const getters = {
         return state.selectedJobTypes.includes(job.jobType);
     },
     [FILTERED_JOBS](state) {
-        const selectedOrganizations = state.selectedOrganizations.length != 0;
-        const selectedJobTypes = state.selectedJobTypes.length != 0;
+        const noSelectedOrganizations = state.selectedOrganizations.length === 0;
+        const noSelectedJobTypes = state.selectedJobTypes.length === 0;
 
-        if (selectedOrganizations || selectedJobTypes) {
-            return state.filteredJobs
+        if (noSelectedOrganizations && noSelectedJobTypes) {
+            return state.jobs;
         }
-        return state.jobs;
+        return state.filteredJobs
     },
 
 

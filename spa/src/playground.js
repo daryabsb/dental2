@@ -1,23 +1,49 @@
+/* REACTIVITY */
+const { ref, computed, reactive } = require("vue");
+
+const person = reactive({
+    name: "Boris"
+});
+
+const title = computed(() => person.name + " the Great!")
+console.log(title.value);
+
+person.name = "Peter"
+console.log(title.value);
+
+// const name = ref("Boris");
+// const title = computed(() => name.value + " the great");
+// console.log(title.value);
+
+// name.value = "Peter";
+// console.log(title.value);
+
+
+
+// let a = ref(1);
+// let b = ref(2);
+
+// // let c = computed(() => a.value + b.value);
+// let c = computed(() => a.value + b.value);
+// console.log(c.value);
+
+// a.value = 10;
+// console.log(c.value);
+
+
 /* -- Working with js FILTERS function -- */
 
 // const numbers = [1, 3, 5, 7, 2, 9, 11, 6]
 // const filNumbers = numbers.filter((number) => number > 6);
 
-const jobs = [
-    { title: "Angular Developer", organization: "Google", },
-    { title: "Programmer", organization: "Microsoft", },
-    { title: "DEveloper", organization: "Microsoft", },
-]
-const filNumbers = jobs.filter((job) => job.organization === "Microsoft");
+// const jobs = [
+//     { title: "Angular Developer", organization: "Google", },
+//     { title: "Programmer", organization: "Microsoft", },
+//     { title: "DEveloper", organization: "Microsoft", },
+// ]
+// const filNumbers = jobs.filter((job) => job.organization === "Microsoft");
 
-console.log(filNumbers);
-
-
-
-
-
-
-
+// console.log(filNumbers);
 
 /* -- Working with js SET function -- */
 // Array - order
