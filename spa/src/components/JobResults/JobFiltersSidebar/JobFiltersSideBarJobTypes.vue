@@ -4,7 +4,7 @@
 			<fieldset>
 				<ul class="flex flex-row flex-wrap">
 					<li
-						v-for="jobtype in UNIQUE_JOB_TYPES"
+						v-for="jobtype in uniqueJobTypes"
 						:key="jobtype"
 						class="w-1/2 h-8"
 					>
@@ -28,40 +28,36 @@
 </template>
 
 <script>
-	import { mapActions, mapGetters, mapMutations } from "vuex";
+	import { ref } from "vue";
+	import { useStore } from "vuex";
+	import { useRouter } from "vue-router";
+	import { useUniqueJobTypes } from "@/store/composables";
 	import Accordion from "@/components/shared/Accordion.vue";
-	import {
-		FILTER_JOBS,
-		ADD_SELECTED_JOB_TYPES,
-		UNIQUE_JOB_TYPES,
-		JOBS_GETTER,
-	} from "@/store/constants";
+	import { FILTER_JOBS, ADD_SELECTED_JOB_TYPES } from "@/store/constants";
 
 	export default {
 		name: "JobFiltersSideBarJobTypes",
 		components: {
 			Accordion,
 		},
-		data() {
-			return {
-				selectedJobTypes: [],
-			};
-		},
-		computed: {
-			// UNIQUE_JOB_TYPES() {
-			// 	return this.$store.getters.UNIQUE_JOB_TYPES;
-			// },
-			...mapGetters([UNIQUE_JOB_TYPES], [JOBS_GETTER]),
-		},
-		methods: {
-			...mapMutations([ADD_SELECTED_JOB_TYPES]),
+		setup() {
+			const store = useStore();
+			const router = useRouter();
 
-			...mapActions([FILTER_JOBS]),
-			selectJobTypes() {
-				this.ADD_SELECTED_JOB_TYPES(this.selectedJobTypes);
-				this.$store.dispatch("FILTER_JOBS");
-				this.$router.push({ name: "jobResults" });
-			},
+			const selectedJobTypes = ref([]);
+			const uniqueJobTypes = useUniqueJobTypes();
+
+			const selectJobTypes = () => {
+				store.commit(ADD_SELECTED_JOB_TYPES, selectedJobTypes.value);
+				store.dispatch(FILTER_JOBS);
+				router.push({ name: "jobResults" });
+			};
+
+			return {
+				selectedJobTypes,
+				uniqueJobTypes,
+				selectJobTypes,
+			};
 		},
 	};
 </script>
