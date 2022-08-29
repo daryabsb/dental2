@@ -12,62 +12,94 @@ describe("actions", () => {
         beforeEach(() => {
             getJobs.mockResolvedValue([{
                 id: 1,
-                title: "Software Developer"
+                title: "Software Developer",
+                organization: "Google",
+                jobType: "Intern"
             }]);
         });
 
-        it("makes request to fetch jobs", async() => {
+        it("makes request to fetch jobs", async () => {
             const context = { commit: jest.fn() };
             await actions.FETCH_JOBS(context);
             expect(getJobs).toHaveBeenCalled()
         });
-        // it("makes request to fetch jobs", () => {});
+
     });
     describe("FILTER_JOBS", () => {
 
         beforeEach(() => {
             filterJobs.mockResolvedValue([{
-                    id: 1,
-                    title: "Software Developer",
-                    organization: "Microsoft",
-                    jobType: "Intern"
-                },
-                {
-                    id: 2,
-                    title: "Python Developer",
-                    organization: "Google",
-                    jobType: "Part-time"
-                },
-                {
-                    id: 3,
-                    title: "Vue Developer",
-                    organization: "Amazon",
-                    jobType: "Intern"
-                },
-                {
-                    id: 4,
-                    title: "Java Developer",
-                    organization: "Microsoft",
-                    jobType: "Part-time"
-                },
+                id: 1,
+                title: "Software Developer",
+                organization: "Microsoft",
+                jobType: "Full-time"
+            },
+            {
+                id: 2,
+                title: "Python Developer",
+                organization: "Google",
+                jobType: "Part-time"
+            },
+
             ]);
         });
-
-        it("makes request to filter jobs", async() => {
-            const commit = jest.fn();
-            const dispatch = jest.fn();
+        it("makes request to filter jobs", async () => {
             const context = {
-                commit,
-                dispatch,
                 state: {
-                    selectedOrganizations: ["Microsoft"],
-                    selectedJobTypes: ["Intern"],
+                    selectedOrganizations: ["Google"],
+                    selectedJobTypes: ["Full-time"],
                 },
+                dispatch: jest.fn(),
+                commit: jest.fn(),
             };
-            const payload = "Microsoft,Intern";
-            await filterJobs(payload);
-            expect(filterJobs).toHaveBeenCalledWith("Microsoft,Intern")
+
+            // const payload = ["Google,Full-time"];
+            await actions.FILTER_JOBS(context);
+            // await filterJobs(payload);
+            expect(filterJobs).toHaveBeenCalledWith("Google,Full-time")
         });
-        // it("makes request to fetch jobs", () => {});
+        it("makes request to fetch jobs", async () => {
+
+            const commit = jest.fn()
+            const context = {
+                state: {
+                    selectedOrganizations: ["Google"],
+                    selectedJobTypes: ["Full-time"],
+                },
+                commit,
+            };
+            await actions.FILTER_JOBS(context);
+            expect(commit).toHaveBeenCalled()
+        });
+        it("commits filtered job to state", async () => {
+            const commit = jest.fn()
+            const context = {
+                state: {
+                    selectedOrganizations: ["Google"],
+                    selectedJobTypes: ["Full-time"],
+                },
+                dispatch: jest.fn(),
+                commit,
+            };
+
+            // const payload = ["Google,Full-time"];
+            const result = await filterJobs(context);
+            // await filterJobs(payload);
+            expect(result).toEqual([{
+                id: 1,
+                title: "Software Developer",
+                organization: "Microsoft",
+                jobType: "Full-time"
+            },
+            {
+                id: 2,
+                title: "Python Developer",
+                organization: "Google",
+                jobType: "Part-time"
+            },
+
+            ])
+        });
+
     });
 });

@@ -109,7 +109,7 @@ class JobViewset(viewsets.ModelViewSet):
         # PERFORM FILTER BY SEARCH INPUT
         conditions = Q()
         keywords = self.request.query_params.get('input', None)
-        query = self.request.query_params.get('query',None)
+        query    = self.request.query_params.get('query', None)
         # print(keywords)
         if keywords:
             
@@ -131,10 +131,14 @@ class JobViewset(viewsets.ModelViewSet):
             print(keywords_list)
             # for word in keywords_list:
             conditions |= Q(
-                locations__in=keywords_list
+                locations__location__in=keywords_list
                 ) | Q(
-                    minimumQualifications__qualification__in=keywords_list
+                    title__icontains=keywords_list
                     )
+
+            if conditions:
+                # print(type(conditions))
+                queryset = Job.objects.filter(conditions)
 
         return queryset
 

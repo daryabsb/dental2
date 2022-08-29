@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/11</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/11</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,18 +125,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,19 +163,19 @@ const actions = {
         }
     },
 &nbsp;
-    [FILTER_JOBS]: <span class="fstat-no" title="function not covered" >as</span>ync (context) =&gt; {
-        let input = <span class="cstat-no" title="statement not covered" >[];</span>
-        const selOrgs = <span class="cstat-no" title="statement not covered" >context.state.selectedOrganizations;</span>
-        const selJobTypes = <span class="cstat-no" title="statement not covered" >context.state.selectedJobTypes;</span>
-        const payloadInput = <span class="cstat-no" title="statement not covered" >input.concat(</span>
-            selOrgs ? selOrgs : "",
-            selJobTypes ? selJobTypes : ""
+    [FILTER_JOBS]: async (context) =&gt; {
+        let input = [];
+        const selOrgs = context.state.selectedOrganizations;
+        const selJobTypes = context.state.selectedJobTypes;
+        const payloadInput = input.concat(
+            selOrgs ? selOrgs : <span class="branch-1 cbranch-no" title="branch not covered" >"",</span>
+            selJobTypes ? selJobTypes : <span class="branch-1 cbranch-no" title="branch not covered" >""</span>
         ).join(",");
         // console.log("payloadInput", payloadInput)
         // console.log(payloadInput);
-        const filteredJobsResponse = <span class="cstat-no" title="statement not covered" >await filterJobs(payloadInput)</span>
+        const filteredJobsResponse = await filterJobs(payloadInput)
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        await context.commit(FILTER_JOBS_IN_STATE, filteredJobsResponse);</span>
+        await context.commit(FILTER_JOBS_IN_STATE, filteredJobsResponse);
     },
 &nbsp;
 };
@@ -187,7 +187,7 @@ export default actions;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-28T18:09:14.640Z
+                at 2022-08-29T13:14:33.058Z
             </div>
         <script src="../prettify.js"></script>
         <script>
