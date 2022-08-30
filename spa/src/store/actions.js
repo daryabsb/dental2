@@ -9,7 +9,7 @@ import {
 } from "@/store/constants";
 
 const actions = {
-    [FETCH_JOBS]: async (context) => {
+    [FETCH_JOBS]: async(context) => {
         try {
             const jobListings = await getJobs();
             await context.commit(RECEIVE_JOBS, jobListings);
@@ -20,7 +20,7 @@ const actions = {
         }
     },
 
-    [FILTER_JOBS]: async (context) => {
+    [FILTER_JOBS]: async(context) => {
         let input = [];
         const selOrgs = context.state.selectedOrganizations;
         const selJobTypes = context.state.selectedJobTypes;

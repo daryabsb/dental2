@@ -1,8 +1,9 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 
-import { FILTERED_JOBS, UNIQUE_JOB_TYPES, UNIQUE_ORGANIZATIONS } from "@/store/constants";
+import { FETCH_JOBS, FILTERED_JOBS, UNIQUE_JOB_TYPES, UNIQUE_ORGANIZATIONS } from "@/store/constants";
 
+/* GETTERS */
 
 export const useFilteredJobs = () => {
     const store = useStore();
@@ -17,4 +18,16 @@ export const useUniqueOrganizations = () => {
 export const useUniqueJobTypes = () => {
     const store = useStore();
     return computed(() => store.getters[UNIQUE_JOB_TYPES]);
+};
+
+/* ACTIONS */
+export const useFetchJobsDispatch = () => {
+
+
+    // try {
+    const store = useStore();
+    store.dispatch(FETCH_JOBS);
+    // } catch (error) {
+    //     console.log("From store/composables/useFetchJobsDispatch:- ", error);
+    // }
 };
