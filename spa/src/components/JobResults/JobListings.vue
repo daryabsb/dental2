@@ -1,5 +1,6 @@
 <template>
   <main class="flex-auto p-8 bg-brand-gray-2">
+    {{ displayedJobs }}
     <ol>
       <job-listing
         v-for="job in displayedJobs"
@@ -36,57 +37,51 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import { FETCH_JOBS, FILTERED_JOBS } from "@/store/constants";
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import { useFilteredJobs } from "@/store/composables";
+import useCurrentPage from "@/composables/useCurrentPage";
+import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
+import useDisplayedJobs from "@/composables/useDisplayedJobs";
+import { FETCH_JOBS } from "@/store/constants";
 import JobListing from "./JobListing.vue";
 export default {
   name: "JobListings",
   components: {
     JobListing,
   },
-  data() {
-    return {
-      // maxJobs: 0,
-      limit: 3,
-      page: 1,
+  setup() {
+    const store = useStore();
+
+    const fetchJobs = () => {
+      try {
+        store.dispatch(FETCH_JOBS);
+      } catch (error) {
+        console.log("from job listings", error);
+      }
     };
-  },
-  computed: {
-    ...mapGetters([FILTERED_JOBS]),
 
-    currentPage() {
-      const pageString = this.$route.query.page || "1";
-      return Number.parseInt(pageString);
-    },
-    previousPage() {
-      const previousPage = this.currentPage - 1;
-      const firstPage = 1;
-      return previousPage >= firstPage ? previousPage : undefined;
-    },
-    nextPage() {
-      const nextPage = this.currentPage + 1;
-      const maxPage = Math.ceil(this.FILTERED_JOBS.length / 10);
-      return nextPage <= maxPage ? nextPage : undefined;
-    },
+    onMounted(fetchJobs);
+    const filteredJobs = useFilteredJobs();
 
-    displayedJobs() {
-      const firstJobIndex = (this.currentPage - 1) * 10;
-      const lastJobIndex = this.currentPage * 10;
-      return this.FILTERED_JOBS.slice(firstJobIndex, lastJobIndex);
-    },
-  },
-  async mounted() {
-    // console.log("MOUNT CALLED");
+    const maxPage = computed(() => Math.ceil(filteredJobs.value.length / 10));
+    const currentPage = useCurrentPage();
 
-    try {
-      await this.FETCH_JOBS();
-      // this.maxJobs = await this.jobs.length;
-    } catch (error) {
-      console.log("from job listings", error);
-    }
-  },
-  methods: {
-    ...mapActions([FETCH_JOBS]),
+    const { previousPage, nextPage } = usePreviousAndNextPages(
+      currentPage,
+      maxPage
+    );
+
+    // const previousPage = usePreviousAndNextPages.previousPage();
+    // const nextPage = usePreviousAndNextPages.nextPage;
+    const displayedJobs = useDisplayedJobs;
+
+    return {
+      currentPage,
+      previousPage,
+      nextPage,
+      displayedJobs,
+    };
   },
 };
 </script>
