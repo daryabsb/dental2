@@ -36,7 +36,7 @@
 	import { FILTER_JOBS, ADD_SELECTED_ORGANIZATIONS } from "@/store/constants";
 
 	export default {
-		name: "JobFilterSideBarOrganizations",
+		name: "JobFiltersSideBarCheckboxGroup",
 		components: {
 			Accordion,
 		},

@@ -51,13 +51,15 @@ describe("JobFiltersSideBarJobTypes", () => {
             expect(commit).toHaveBeenCalledWith("ADD_SELECTED_JOB_TYPES", ["Intern"]);
         });
         it("navigate user to job results page to see fresh", async() => {
-            const commit = jest.fn();
-            const dispatch = jest.fn();
             const push = jest.fn()
             useRouter.mockReturnValue({ push });
-            useStore.mockReturnValue(
+            useUniqueJobTypes.mockReturnValue(
                 new Set(["Intern", "Part-time"])
             );
+            useStore.mockReturnValue({
+                commit: jest.fn(),
+                dispatch: jest.fn(),
+            });
             const wrapper = mount(
                 JobFiltersSideBarJobTypes,
                 createConfig()
