@@ -1,24 +1,24 @@
 <template>
-	<accordion header="Organization">
+	<accordion :header="header">
 		<div class="mt-5">
 			<fieldset>
 				<ul class="flex flex-row flex-wrap">
 					<li
-						v-for="organization in uniqueOrganizations"
-						:key="organization"
+						v-for="value in uniqueValues"
+						:key="value"
 						class="w-1/2 h-8"
 					>
 						<input
-							:id="organization"
-							v-model="selectedOrganizations"
-							:value="organization"
+							:id="value"
+							v-model="selectedValues"
+							:value="value"
 							type="checkbox"
 							class="mr-3"
-							:data-test="organization"
-							@change="selectOrganization"
+							:data-test="value"
+							@change="selectValue"
 						/>
-						<label :for="organization" data-test="organization">{{
-							organization
+						<label :for="value" data-test="value">{{
+							value
 						}}</label>
 					</li>
 				</ul>
@@ -44,7 +44,7 @@
 			const store = useStore();
 			const router = useRouter();
 
-			const selectedOrganizations = ref([]);
+			const selectedValues = ref([]);
 			const uniqueOrganizations = useUniqueOrganizations();
 
 			const selectOrganization = () => {
