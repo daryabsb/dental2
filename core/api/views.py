@@ -23,11 +23,11 @@ from rest_framework import authentication, permissions, parsers, viewsets, mixin
 # from rest_framework.authentication import TokenAuthentication
 # from rest_framework.permissions import IsAuthenticated
 
-from core.models import Description, Job, Location, PreferredQualification, Qualification, Spotlight, User
+from core.models import Description, Job, Jobs, Location, PreferredQualification, Qualification, Spotlight, User
 from .serializers import (
-    DescriptionSerializer, JobSerializer, LocationSerializer, PreferredQualificationSerializer, QualificationSerializer, SpotlightSerializer, UserSerializer, AuthTokenSerializer, 
+    DescriptionSerializer, JobSerializer, JobsSerializer, LocationSerializer, PreferredQualificationSerializer, QualificationSerializer, SpotlightSerializer, UserSerializer, AuthTokenSerializer,
     ChangePasswordSerializer,
-    )
+)
 # from .pagination import PatientPagination, AppointmentPagination
 
 
@@ -52,44 +52,45 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
         # Retrieve and return authenticated user
         return self.request.user
 
+
 class ChangePasswordView(generics.UpdateAPIView):
-        """
-        An endpoint for changing password.
-        """
-        serializer_class = ChangePasswordSerializer
-        model = User
-        permission_classes = (permissions.IsAuthenticated,)
+    """
+    An endpoint for changing password.
+    """
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (permissions.IsAuthenticated,)
 
-        def get_object(self, queryset=None):
-            obj = self.request.user
-            return obj
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
 
-        def update(self, request, *args, **kwargs):
-            self.object = self.get_object()
-            serializer = self.get_serializer(data=request.data)
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
 
-            if serializer.is_valid():
-                # Check old password
-                if not self.object.check_password(
-                    serializer.data.get("old_password")
-                    ):
-                    return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
-                # set_password also hashes the password that the user will get
-                self.object.set_password(serializer.data.get("new_password"))
-                self.object.save()
-                response = {
-                    'status': 'success',
-                    'code': status.HTTP_200_OK,
-                    'message': 'Password updated successfully',
-                    'data': []
-                }
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(
+                serializer.data.get("old_password")
+            ):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            response = {
+                'status': 'success',
+                'code': status.HTTP_200_OK,
+                'message': 'Password updated successfully',
+                'data': []
+            }
 
-                return Response(response)
+            return Response(response)
 
-            return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST
-                )
-            
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
+
 
 class JobViewset(viewsets.ModelViewSet):
     queryset = Job.objects.all()
@@ -105,40 +106,92 @@ class JobViewset(viewsets.ModelViewSet):
         """
         # print(self.request.query_params)
         queryset = Job.objects.all()
-        
+
         # PERFORM FILTER BY SEARCH INPUT
         conditions = Q()
         keywords = self.request.query_params.get('input', None)
-        query    = self.request.query_params.get('query', None)
+        query = self.request.query_params.get('query', None)
         # print(keywords)
         if keywords:
-            
-            keywords_list = keywords.split(',') 
+
+            keywords_list = keywords.split(',')
             # print(keywords_list)
             # for word in keywords_list:
             conditions |= Q(
                 organization__in=keywords_list
-                ) | Q(
-                    jobType__in=keywords_list
-                    )
-    
+            ) | Q(
+                jobType__in=keywords_list
+            )
+
             if conditions:
                 # print(type(conditions))
                 queryset = Job.objects.filter(conditions)
 
         if query:
-            keywords_list = query.split(',') 
+            keywords_list = query.split(',')
             print(keywords_list)
             # for word in keywords_list:
             conditions |= Q(
                 locations__location__in=keywords_list
-                ) | Q(
-                    title__icontains=keywords_list
-                    )
+            ) | Q(
+                title__icontains=keywords_list
+            )
 
             if conditions:
                 # print(type(conditions))
                 queryset = Job.objects.filter(conditions)
+
+        return queryset
+
+
+class JobsViewset(viewsets.ModelViewSet):
+    queryset = Jobs.objects.all()
+    serializer_class = JobsSerializer
+    permission_classes = (permissions.AllowAny,)
+    filter_backends = [DjangoFilterBackend]
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        # print(self.request.query_params)
+        queryset = Jobs.objects.all()
+
+        # PERFORM FILTER BY SEARCH INPUT
+        conditions = Q()
+        keywords = self.request.query_params.get('input', None)
+        query = self.request.query_params.get('query', None)
+        # print(keywords)
+        if keywords:
+
+            keywords_list = keywords.split(',')
+            # print(keywords_list)
+            # for word in keywords_list:
+            conditions |= Q(
+                organization__in=keywords_list
+            ) | Q(
+                jobType__in=keywords_list
+            )
+
+            if conditions:
+                # print(type(conditions))
+                queryset = Jobs.objects.filter(conditions)
+
+        if query:
+            keywords_list = query.split(',')
+            print(keywords_list)
+            # for word in keywords_list:
+            conditions |= Q(
+                locations__location__in=keywords_list
+            ) | Q(
+                title__icontains=keywords_list
+            )
+
+            if conditions:
+                # print(type(conditions))
+                queryset = Jobs.objects.filter(conditions)
 
         return queryset
 

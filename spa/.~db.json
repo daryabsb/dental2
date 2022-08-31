@@ -1,5 +1,6 @@
 {
-    "spotlights": [{
+    "spotlights": [
+        {
             "id": 1,
             "img": "https://images.unsplash.com/photo-1556075798-4825dfaaf498",
             "title": "Cloud Engineering",
@@ -12,7 +13,8 @@
             "description": "Be a leader for everyone. Leadership builds character."
         }
     ],
-    "jobs": [{
+    "jobs": [
+        {
             "id": 1,
             "title": "Angular Developer",
             "organization": "Vue and Me",

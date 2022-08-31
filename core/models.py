@@ -1,7 +1,9 @@
 from datetime import date
+from email.policy import default
 import uuid
 import os
 from django.db import models
+# from jsonfield import JSONField
 from django.urls import reverse
 from django.utils import timezone
 import datetime
@@ -19,11 +21,12 @@ from django.db.models.signals import post_save
 
 
 from .modules import (
-    calculateAge, save_pdf_pages_attachment, 
+    calculateAge, save_pdf_pages_attachment,
     profile_image_file_path, pdf_page_count
-    )
+)
 
 # Create your models here.
+
 
 class UserManager(BaseUserManager):
 
@@ -53,7 +56,8 @@ class User(PermissionsMixin, AbstractBaseUser):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    image = models.ImageField(null=True, blank=True, upload_to=profile_image_file_path)
+    image = models.ImageField(null=True, blank=True,
+                              upload_to=profile_image_file_path)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -64,43 +68,70 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
+
 class Job(models.Model):
     title = models.CharField(max_length=50)
     organization = models.CharField(max_length=50)
     degree = models.CharField(max_length=50)
     jobType = models.CharField(max_length=50)
-    dateAdded = models.DateField(blank=True,null=True)
+    locations = models.JSONField(encoder=None)
+    minimumQualifications = models.JSONField(null=True, blank=True)
+    preferredQualifications = models.JSONField(null=True, blank=True)
+    description = models.JSONField(null=True, blank=True)
+    dateAdded = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.title
 
+
+class Jobs(models.Model):
+    title = models.CharField(max_length=50)
+    organization = models.CharField(max_length=50)
+    degree = models.CharField(max_length=50)
+    jobType = models.CharField(max_length=50)
+    dateAdded = models.DateField(blank=True, null=True)
+    qualification = models.JSONField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Qualification(models.Model):
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='minimumQualifications')
+    job = models.ForeignKey('Jobs', on_delete=models.CASCADE,
+                            related_name='minimumQualifications')
     qualification = models.CharField(max_length=200)
 
     def __str__(self):
         return self.qualification
 
+
 class PreferredQualification(models.Model):
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='preferredQualifications')
+    job = models.ForeignKey('Jobs', on_delete=models.CASCADE,
+                            related_name='preferredQualifications')
     qualification = models.CharField(max_length=200)
 
+
 class Description(models.Model):
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='description')
+    job = models.ForeignKey(
+        'Jobs', on_delete=models.CASCADE, related_name='description')
     description = models.CharField(max_length=200)
 
     def __str__(self):
         return self.description
 
+
 class Location(models.Model):
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='locations')
+    job = models.ForeignKey(
+        'Jobs', on_delete=models.CASCADE, related_name='locations')
     location = models.CharField(max_length=50)
 
     def __str__(self):
         return self.location
 
+
 class Spotlight(models.Model):
-    img = models.ImageField(null=True, blank=True, upload_to=profile_image_file_path)
+    img = models.ImageField(null=True, blank=True,
+                            upload_to=profile_image_file_path)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
 
