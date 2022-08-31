@@ -1,27 +1,33 @@
-/* REACTIVITY */
-const { computed, reactive, toRefs } = require("vue");
+/* TYPESCRIPT */
 
-const person = reactive({
-    firstName: "Boris",
-    lastName: "Paskhaver",
-});
+
+
+
+/* REACTIVITY */
+
+// const { computed, reactive, toRefs } = require("vue");
+
+// const person = reactive({
+//     firstName: "Boris",
+//     lastName: "Paskhaver",
+// });
 
 // x x x const { firstName, lastName } = person;
 
 // const firstName = toRef(person, "firstName");
 // const lastName = toRef(person, "lastName");
-const { firstName, lastName } = toRefs(person)
+// const { firstName, lastName } = toRefs(person)
 
-const title = computed(() => `${firstName.value} ${lastName.value} the Great!`)
+// const title = computed(() => `${firstName.value} ${lastName.value} the Great!`)
 
-// const titleLength = computed(() => title.value.length)
-console.log(title.value);
+// // const titleLength = computed(() => title.value.length)
+// console.log(title.value);
 
-person.firstName = "Ata"
-console.log(title.value);
+// person.firstName = "Ata"
+// console.log(title.value);
 
-person.lastName = "Griffin"
-console.log(title.value);
+// person.lastName = "Griffin"
+// console.log(title.value);
 // console.log(titleLength.value);
 
 // const name = ref("Boris");
