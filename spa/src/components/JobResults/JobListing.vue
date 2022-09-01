@@ -25,7 +25,7 @@
 							:key="loc"
 							class="inline-block mr-5"
 						>
-							{{ loc.location }}
+							{{ loc }}
 						</li>
 					</ul>
 				</div>
@@ -39,7 +39,7 @@
 								v-for="qual in job.minimumQualifications"
 								:key="qual"
 							>
-								{{ qual.qualification }}
+								{{ qual }}
 								<br />
 							</li>
 						</ul>

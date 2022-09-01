@@ -8,7 +8,7 @@ describe("Headline", () => {
         jest.useFakeTimers("legacy");
     });
     afterEach(() => {
-        jest.useRealTimers("legacy");
+        jest.useRealTimers();
     });
 
 
@@ -26,7 +26,7 @@ describe("Headline", () => {
             expect(setInterval).toHaveBeenCalled();
             // jest.useRealTimers();
         });
-        it("swaps action phrase after first interval ", async() => {
+        it("swaps action phrase after first interval ", async () => {
             // jest.useFakeTimers("legacy");
             const wrapper = mount(Headline);
             jest.runOnlyPendingTimers();

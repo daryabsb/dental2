@@ -8,8 +8,8 @@ from .views import (
 
 
 router = routers.DefaultRouter()
-router.register('job', JobViewset)
-router.register('jobs', JobsViewset)
+router.register('jobs', JobViewset)
+router.register('job', JobsViewset)
 router.register('locations', LocationViewset)
 router.register('qualifications', QualificationViewset)
 router.register('preferredqualifications', PreferredViewset)

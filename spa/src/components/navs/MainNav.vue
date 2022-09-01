@@ -1,42 +1,59 @@
 <template>
-<div>
-	<header :class="['w-full', 'text-sm', headerHeightClass]">Main Nav</header>
-	<div class="fixed top-0 left-0 w-full h-16 bg-white">
-		<div class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1">
-			<router-link to="/" class="flex items-center h-full text-xl">
-				{{
-				company
-				}}
-			</router-link>
-			<nav class="h-full ml-12">
-				<ul class="flex h-full p-0 m0 list-none">
-					<li
-						v-for="item in menuItems"
-						:key="item.id"
-						class="h-ful ml-9 first:ml-0"
-						data-test="main-nav-list-item"
-					>
-						<router-link :to="item.url" class="flex items-center h-full py-2 5">{{ item.title }}</router-link>
-					</li>
-				</ul>
-			</nav>
-			<div class="flex items-center h-full ml-auto">
-				<ProfileImage v-if="isLoggedIn" data-test="profile-image" @click="LOGIN_USER()" />
-				<action-button
-					v-else
-					type="primary"
-					text="Sign in"
-					data-test="login-button"
-					@click="LOGIN_USER()"
-				></action-button>
+	<div>
+		<header :class="['w-full', 'text-sm', headerHeightClass]">
+			Main Nav
+		</header>
+		<div class="fixed top-0 left-0 w-full h-16 bg-white">
+			<div
+				class="
+					flex flex-nowrap
+					h-full
+					px-8
+					mx-auto
+					border-b border-solid border-brand-gray-1
+				"
+			>
+				<router-link to="/" class="flex items-center h-full text-xl">
+					{{ company }}
+				</router-link>
+				<nav class="h-full ml-12">
+					<ul class="flex h-full p-0 m0 list-none">
+						<li
+							v-for="item in menuItems"
+							:key="item.id"
+							class="h-ful ml-9 first:ml-0"
+							data-test="main-nav-list-item"
+						>
+							<router-link
+								:to="item.url"
+								class="flex items-center h-full py-2 5"
+								>{{ item.title }}</router-link
+							>
+						</li>
+					</ul>
+				</nav>
+				<div class="flex items-center h-full ml-auto">
+					<ProfileImage
+						v-if="isLoggedIn"
+						data-test="profile-image"
+						@click="LOGIN_USER()"
+					/>
+					<action-button
+						v-else
+						type="primary"
+						text="Sign in"
+						data-test="login-button"
+						@click="LOGIN_USER()"
+					></action-button>
+				</div>
 			</div>
+			<sub-nav v-if="isLoggedIn" data-test="sub-nav"></sub-nav>
 		</div>
-		<sub-nav v-if="isLoggedIn" data-test="sub-nav"></sub-nav>
-	</div>
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+	import { defineComponent } from "vue";
 	import { mapState, mapMutations } from "vuex";
 	import getJobs from "@/api/getJobs";
 	import ActionButton from "@/components/shared/ActionButton.vue";
@@ -45,7 +62,7 @@
 
 	import { LOGIN_USER } from "@/store/constants";
 
-	export default {
+	export default defineComponent({
 		name: "MainNav",
 		components: {
 			ActionButton,
@@ -106,5 +123,6 @@
 			},
 			...mapMutations(["LOGIN_USER"]),
 		},
-	};
+		setup() {},
+	});
 </script>

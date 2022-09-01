@@ -74,7 +74,7 @@ class Job(models.Model):
     organization = models.CharField(max_length=50)
     degree = models.CharField(max_length=50)
     jobType = models.CharField(max_length=50)
-    locations = models.JSONField(encoder=None)
+    locations = models.JSONField(null=True, blank=True)
     minimumQualifications = models.JSONField(null=True, blank=True)
     preferredQualifications = models.JSONField(null=True, blank=True)
     description = models.JSONField(null=True, blank=True)
