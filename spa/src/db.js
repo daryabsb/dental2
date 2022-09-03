@@ -1,19 +1,49 @@
 const axios = require("axios");
 const data = {
     "spotlights": [{
-            "id": 1,
-            "img": "https://images.unsplash.com/photo-1556075798-4825dfaaf498",
-            "title": "Cloud Engineering",
-            "description": "Build fun stuff in the cloud. It's a lot of fun, we promise!"
-        },
-        {
-            "id": 2,
-            "img": "https://images.unsplash.com/photo-1511376777868-611b54f68947",
-            "title": "Executive Leadership",
-            "description": "Be a leader for everyone. Leadership builds character."
-        }
+        "id": 1,
+        "img": "https://images.unsplash.com/photo-1556075798-4825dfaaf498",
+        "title": "Cloud Engineering",
+        "description": "Build fun stuff in the cloud. It's a lot of fun, we promise!"
+    },
+    {
+        "id": 2,
+        "img": "https://images.unsplash.com/photo-1511376777868-611b54f68947",
+        "title": "Executive Leadership",
+        "description": "Be a leader for everyone. Leadership builds character."
+    }
     ],
-    "jobs": [{
+    "jobs": [
+        {
+            "id": 1,
+            "title": "Angular Developer",
+            "organization": "Vue and Me",
+            "degree": "Master's",
+            "jobType": "Intern",
+            "locations": [
+                "Oslo"
+            ],
+            "minimumQualifications": [
+                "Mesh granular deliverables, engineer enterprise convergence, and synergize B2C initiatives",
+                "Morph bricks-and-clicks relationships, whiteboard one-to-one experiences, and innovate distributed schemas",
+                "Drive intuitive deliverables, exploit vertical users, and optimize interactive e-commerce",
+                "Embrace sticky infrastructures, incubate B2C portals, and drive killer applications"
+            ],
+            "preferredQualifications": [
+                "Mesh wireless metrics, syndicate innovative markets, and disintermediate intuitive niches",
+                "Matrix next-generation vortals, cultivate virtual relationships, and unleash wireless platforms",
+                "Brand granular roi, transform mission-critical users, and target value-added models",
+                "Envisioneer b2b web services, aggregate clicks-and-mortar architectures, and target synergistic initiatives"
+            ],
+            "description": [
+                "Away someone forget effect wait land.",
+                "State even create can either. Character almost turn idea born its to. Understand ability another lose. Smile interesting claim difference.",
+                "Author act increase worry yeah. Positive medical shake include serious check state."
+            ],
+            "dateAdded": "2021-07-04"
+        },
+
+        {
             "id": 2,
             "title": "Java Coder",
             "organization": "VueTube",
@@ -2776,37 +2806,38 @@ const data = {
                 "Central financial present despite. Senior thing house appear ask property. Follow watch race north operation."
             ],
             "dateAdded": "2021-01-26"
-        },
-        {
-            "id": 100,
-            "title": "Software Associate",
-            "organization": "Point of Vue",
-            "degree": "Pursuing Degree",
-            "jobType": "Temporary",
-            "locations": [
-                "Vancouver",
-                "Cincinnati",
-                "Bangkok",
-                "São Paulo"
-            ],
-            "minimumQualifications": [
-                "E-enable strategic architectures, expedite 24/365 solutions, and seize visionary web-readiness",
-                "Whiteboard user-centric portals, incubate killer solutions, and expedite customized content",
-                "Monetize revolutionary paradigms, empower efficient models, and engage holistic web-readiness",
-                "Redefine distributed niches, deliver cutting-edge e-business, and disintermediate rich solutions"
-            ],
-            "preferredQualifications": [
-                "Leverage killer solutions, benchmark holistic communities, and engineer value-added synergies",
-                "Strategize rich convergence, maximize robust relationships, and cultivate scalable deliverables",
-                "Benchmark out-of-the-box eyeballs, matrix e-business e-commerce, and maximize turn-key experiences"
-            ],
-            "description": [
-                "Try outside offer. Religious politics same wide.",
-                "Rock positive recognize establish my national.",
-                "Answer financial account eat court reveal finally. Pay their capital. This federal defense parent gun."
-            ],
-            "dateAdded": "2021-01-26"
         }
+        // ,
+        // {
+        //     "id": 100,
+        //     "title": "Software Associate",
+        //     "organization": "Point of Vue",
+        //     "degree": "Pursuing Degree",
+        //     "jobType": "Temporary",
+        //     "locations": [
+        //         "Vancouver",
+        //         "Cincinnati",
+        //         "Bangkok",
+        //         "São Paulo"
+        //     ],
+        //     "minimumQualifications": [
+        //         "E-enable strategic architectures, expedite 24/365 solutions, and seize visionary web-readiness",
+        //         "Whiteboard user-centric portals, incubate killer solutions, and expedite customized content",
+        //         "Monetize revolutionary paradigms, empower efficient models, and engage holistic web-readiness",
+        //         "Redefine distributed niches, deliver cutting-edge e-business, and disintermediate rich solutions"
+        //     ],
+        //     "preferredQualifications": [
+        //         "Leverage killer solutions, benchmark holistic communities, and engineer value-added synergies",
+        //         "Strategize rich convergence, maximize robust relationships, and cultivate scalable deliverables",
+        //         "Benchmark out-of-the-box eyeballs, matrix e-business e-commerce, and maximize turn-key experiences"
+        //     ],
+        //     "description": [
+        //         "Try outside offer. Religious politics same wide.",
+        //         "Rock positive recognize establish my national.",
+        //         "Answer financial account eat court reveal finally. Pay their capital. This federal defense parent gun."
+        //     ],
+        //     "dateAdded": "2021-01-26"
+        // }
     ]
 }
 
@@ -2816,62 +2847,69 @@ const data = {
 //     delete el['id'];
 //     console.log(`el-`, el);
 // });
-const el = {
-    title: "Software Associate",
-    organization: "Point of Vue",
-    degree: "Pursuing Degree",
-    jobType: "Temporary",
-    locations: ["Vancouver", "Cincinnati", "Bangkok", "São Paulo"],
-    minimumQualifications: [
-        "E-enable strategic architectures, expedite 24/365 solutions, and seize visionary web-readiness",
-        "Whiteboard user-centric portals, incubate killer solutions, and expedite customized content",
-        "Monetize revolutionary paradigms, empower efficient models, and engage holistic web-readiness",
-        "Redefine distributed niches, deliver cutting-edge e-business, and disintermediate rich solutions"
-    ],
-    preferredQualifications: [
-        "Leverage killer solutions, benchmark holistic communities, and engineer value-added synergies",
-        "Strategize rich convergence, maximize robust relationships, and cultivate scalable deliverables",
-        "Benchmark out-of-the-box eyeballs, matrix e-business e-commerce, and maximize turn-key experiences"
-    ],
-    description: [
-        "Try outside offer. Religious politics same wide.",
-        "Rock positive recognize establish my national.",
-        "Answer financial account eat court reveal finally. Pay their capital. This federal defense parent gun."
-    ],
-    dateAdded: "2021-01-26"
-}
+// const el = {
+//     id: 1,
+//     title: "Software Associate",
+//     organization: "Point of Vue",
+//     degree: "Pursuing Degree",
+//     jobType: "Intern",
+//     locations: ["Vancouver", "Cincinnati", "Bangkok", "São Paulo"],
+//     minimumQualifications: [
+//         "E-enable strategic architectures, expedite 24/365 solutions, and seize visionary web-readiness",
+//         "Whiteboard user-centric portals, incubate killer solutions, and expedite customized content",
+//         "Monetize revolutionary paradigms, empower efficient models, and engage holistic web-readiness",
+//         "Redefine distributed niches, deliver cutting-edge e-business, and disintermediate rich solutions"
+//     ],
+//     preferredQualifications: [
+//         "Leverage killer solutions, benchmark holistic communities, and engineer value-added synergies",
+//         "Strategize rich convergence, maximize robust relationships, and cultivate scalable deliverables",
+//         "Benchmark out-of-the-box eyeballs, matrix e-business e-commerce, and maximize turn-key experiences"
+//     ],
+//     description: [
+//         "Try outside offer. Religious politics same wide.",
+//         "Rock positive recognize establish my national.",
+//         "Answer financial account eat court reveal finally. Pay their capital. This federal defense parent gun."
+//     ],
+//     dateAdded: "2021-01-26"
+// }
 
 
 
-const receivedJobs = async() => {
+const receivedJobs = async () => {
     const response = await axios.get("http://127.0.0.1:8000/api/job/");
     return response.data;
 }
 
-const jobs = receivedJobs();
-for (let el in data.jobs) {
-    delete el['id'];
-    for (job of jobs) {
-        delete job['id'];
-        console.log(el === job);
-    }
+// const jobs = receivedJobs();
+// console.log(data.jobs[0])
 
-};
-const postJobs = async(el) => {
+// for (let el in data.jobs) {
+//     console.log(el)
+
+// }
+
+const postJobs = async (el) => {
+    const id = el.id
     try {
-        const response = await axios.post("http://127.0.0.1:8000/api/job/", el)
+
+        delete el.id;
+        const response = await axios.post("http://127.0.0.1:8000/api/jobs/", el)
         console.log(response.data);
         return response.data
 
     } catch (error) {
+        console.log(id)
         console.log(error);
     }
 }
-
-
+// postJobs(el);
 data.jobs.forEach(el => {
-    delete el['id'];
-    // jobs(el);
+    postJobs(el);
 });
+
+// data.jobs.forEach(el => {
+//     delete el['id'];
+    // jobs(el);
+// });
 // receivedJobs();
 // console.log(jobs);
