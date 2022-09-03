@@ -24,10 +24,10 @@ const actions = {
         }
     },
     [FILTER_JOBS]: async (context: Context) => {
-        let input: string[] = [];
+        const input: string[] = [];
         const selOrgs = context.state.selectedOrganizations;
         const selJobTypes = context.state.selectedJobTypes;
-        const payloadInput = input.concat(
+        const payloadInput: string = input.concat(
             selOrgs ? selOrgs : "",
             selJobTypes ? selJobTypes : ""
         ).join(",");

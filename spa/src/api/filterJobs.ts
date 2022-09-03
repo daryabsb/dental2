@@ -1,5 +1,8 @@
 import axios from "axios";
-const filterJobs = async (payload) => {
+
+import { Job } from "@/api/types";
+
+const filterJobs = async (payload: string) => {
     // console.log("Payload is empy", payload);
     const baseUrl = `${process.env.VUE_APP_API_URL}/jobs/`;
     let inputKeyword, url;
@@ -11,7 +14,7 @@ const filterJobs = async (payload) => {
 
         try {
 
-            const response = await axios.get(url);
+            const response = await axios.get<Job[]>(url);
 
             return response.data;
         } catch (err) {

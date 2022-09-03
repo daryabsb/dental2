@@ -1,23 +1,19 @@
 <template>
-	<hero></hero>
-	<spotlight></spotlight>
+  <hero></hero>
+  <spotlight></spotlight>
 </template>
 
-<script>
-	// @ is an alias to /src
-	import Hero from "@/components/JobSearch/Hero.vue";
-	import Spotlight from "@/components/JobSearch/Spotlight.vue";
+<script lang="ts">
+import { defineComponent } from "vue";
+// @ is an alias to /src
+import Hero from "@/components/JobSearch/Hero.vue";
+import Spotlight from "@/components/JobSearch/Spotlight.vue";
 
-	export default {
-		name: "HomeView",
-		components: {
-			Hero,
-			Spotlight,
-		},
-		methods: {
-			fetchJobs() {
-				this.$store.dispatch("FETCH_JOBS");
-			},
-		},
-	};
+export default defineComponent({
+  name: "HomeView",
+  components: {
+    Hero,
+    Spotlight
+  }
+});
 </script>

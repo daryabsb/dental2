@@ -5,9 +5,11 @@ jest.mock("axios");
 
 import Spotlight from "@/components/JobSearch/Spotlight.vue";
 
+const axiosGetMock = axios.get as jest.Mock;
+
 describe("Spotlight", () => {
     const mockSpotlightResponse = (data = {}) => {
-        axios.get.mockResolvedValue({
+        axiosGetMock.mockResolvedValue({
             data: [{
                 img: "Some image",
                 title: "Some title",
@@ -16,7 +18,7 @@ describe("Spotlight", () => {
             }],
         });
     };
-    it("provides img attribute to parent component", async() => {
+    it("provides img attribute to parent component", async () => {
         mockSpotlightResponse({ img: "Some img" })
         const wrapper = mount(Spotlight, {
             slots: {
@@ -28,7 +30,7 @@ describe("Spotlight", () => {
         await flushPromises();
         expect(wrapper.text()).toMatch("Some img");
     });
-    it("provides title attribute to parent component", async() => {
+    it("provides title attribute to parent component", async () => {
         mockSpotlightResponse({ title: "Some titles" })
         const wrapper = mount(Spotlight, {
             slots: {
@@ -40,7 +42,7 @@ describe("Spotlight", () => {
         await flushPromises();
         expect(wrapper.text()).toMatch("Some titles");
     });
-    it("provides description attribute to parent component", async() => {
+    it("provides description attribute to parent component", async () => {
         mockSpotlightResponse({ description: "Some descriptions" })
         const wrapper = mount(Spotlight, {
             slots: {

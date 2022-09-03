@@ -86,8 +86,8 @@ describe("actions", () => {
                 commit,
             };
 
-            // const payload = ["Google,Full-time"];
-            const result = await filterJobs(context);
+            const payload = "Google,Full-time";
+            const result = await filterJobs(payload);
             // await filterJobs(payload);
             expect(result).toEqual([
                 {
