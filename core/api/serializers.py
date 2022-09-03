@@ -98,13 +98,7 @@ class JobSerializer(serializers.ModelSerializer):
         job.preferredQualifications = preferredQualifications_data
         job.description = description_data
 
-        job.save()
-        print(location_data)
-        print(minimumQualifications_data)
-        print(preferredQualifications_data)
-        print(description_data)
-
-        # job = Jobs.objects.create(**validated_data)
+        job.save()        
         return job
 
 
@@ -114,58 +108,3 @@ class SpotlightSerializer(serializers.ModelSerializer):
         model = Spotlight
         fields = '__all__'
         read_only_Fields = ('id',)
-
-# class JobsSerializer(serializers.ModelSerializer):
-#     locations = LocationSerializer(many=True, required=False)
-#     minimumQualifications = QualificationSerializer(many=True, required=False)
-#     preferredQualifications = PreferredQualificationSerializer(
-#         many=True, required=False)
-#     description = DescriptionSerializer(many=True, required=False)
-
-#     class Meta:
-#         model = Jobs
-#         fields = [
-#             'id', 'title', 'organization', 'degree', 'jobType',
-#             'locations', 'minimumQualifications', 'preferredQualifications', 'description',
-#             'qualification', 'dateAdded',
-#         ]
-#         read_only_Fields = ("id",)
-
-#     def create(self, validated_data):
-#         print(validated_data)
-#         job = Jobs.objects.create(**validated_data)
-#         return job
-
-
-# class QualificationSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Qualification
-#         fields = ('qualification',)
-#         read_only_Fields = ('id',)
-
-
-# class PreferredQualificationSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = PreferredQualification
-#         fields = ('qualification',)
-#         read_only_Fields = ('id',)
-
-
-# class DescriptionSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Description
-#         fields = ('description',)
-#         read_only_Fields = ('id',)
-
-
-# class LocationSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Location
-#         fields = ('location',)
-#         read_only_Fields = ('id',)
-
-

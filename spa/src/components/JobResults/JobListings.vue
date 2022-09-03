@@ -16,7 +16,7 @@
 						v-if="previousPage"
 						:to="{
 							name: 'jobResults',
-							query: { page: previousPage },
+							query: { page: previousPage }
 						}"
 						class="mx-3 text-sm font-semibold text-brand-blue-1"
 						data-test="previous-page-link"
@@ -35,41 +35,39 @@
 	</main>
 </template>
 
-<script>
-	import { computed, onMounted } from "vue";
-	import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables";
-	import useCurrentPage from "@/composables/useCurrentPage";
-	import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
-	import useDisplayedJobs from "@/composables/useDisplayedJobs";
-	import JobListing from "@/components/JobResults/JobListing.vue";
-	export default {
-		name: "JobListings",
-		components: {
-			JobListing,
-		},
-		setup() {
-			onMounted(useFetchJobsDispatch);
-			const filteredJobs = useFilteredJobs();
-			const maxPage = computed(() =>
-				Math.ceil(filteredJobs.value.length / 10)
-			);
-			const currentPage = useCurrentPage();
+<script lang="ts">
+import { defineComponent } from "vue";
+import { computed, onMounted } from "vue";
+import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables";
+import useCurrentPage from "@/composables/useCurrentPage";
+import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
+import useDisplayedJobs from "@/composables/useDisplayedJobs";
+import JobListing from "@/components/JobResults/JobListing.vue";
+export default defineComponent({
+	name: "JobListings",
+	components: {
+		JobListing
+	},
+	setup() {
+		onMounted(useFetchJobsDispatch);
+		const filteredJobs = useFilteredJobs();
+		const maxPage = computed(() => Math.ceil(filteredJobs.value.length / 10));
+		const currentPage = useCurrentPage();
 
-			const { previousPage, nextPage } = usePreviousAndNextPages(
-				currentPage,
-				maxPage
-			);
+		const { previousPage, nextPage } = usePreviousAndNextPages(
+			currentPage,
+			maxPage
+		);
 
-			// const previousPage = usePreviousAndNextPages.previousPage();
-			// const nextPage = usePreviousAndNextPages.nextPage;
-			const displayedJobs = useDisplayedJobs();
-			return {
-				currentPage,
-				previousPage,
-				nextPage,
-				displayedJobs,
-			};
-		},
-	};
+		// const previousPage = usePreviousAndNextPages.previousPage();
+		// const nextPage = usePreviousAndNextPages.nextPage;
+		const displayedJobs = useDisplayedJobs();
+		return {
+			currentPage,
+			previousPage,
+			nextPage,
+			displayedJobs
+		};
+	}
+});
 </script>
-
