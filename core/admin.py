@@ -6,11 +6,11 @@ from .models import (
     Spotlight,
     User,
     Job,
-    Jobs,
-    Qualification,
-    PreferredQualification,
-    Location,
-    Description
+    # Jobs,
+    # Qualification,
+    # PreferredQualification,
+    # Location,
+    # Description
     )
 
 class UserAdmin(BaseUserAdmin):
@@ -34,9 +34,9 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Job)
-admin.site.register(Jobs)
-admin.site.register(Qualification)
-admin.site.register(PreferredQualification)
-admin.site.register(Description)
-admin.site.register(Location)
+# admin.site.register(Jobs)
+# admin.site.register(Qualification)
+# admin.site.register(PreferredQualification)
+# admin.site.register(Description)
+# admin.site.register(Location)
 admin.site.register(Spotlight)
