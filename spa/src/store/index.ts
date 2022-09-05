@@ -10,11 +10,11 @@ import { GlobalState } from "./types";
 export const key: InjectionKey<Store<GlobalState>> = Symbol();
 
 const store = createStore<GlobalState>({
-    state,
-    mutations,
-    actions,
-    getters,
-    strict: process.env.NODE_ENV !== "production",
+  state,
+  mutations,
+  actions,
+  getters,
+  strict: process.env.NODE_ENV !== "production",
 });
 
 // console.log(store.state.isLoggedIn);
@@ -22,9 +22,6 @@ const store = createStore<GlobalState>({
 // console.log(store.state.isLoggedIn);
 
 export default store;
-
-
-
 
 // import { createStore } from 'vuex'
 

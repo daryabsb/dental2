@@ -26,7 +26,7 @@ import { defineComponent } from "vue";
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import {key} from "@/store"
+// import {key} from "@/store"
 import Accordion from "@/components/shared/Accordion.vue";
 import { FILTER_JOBS } from "@/store/constants";
 
@@ -50,7 +50,7 @@ export default defineComponent({
 		}
 	},
 	setup(props) {
-		const store = useStore(key);
+		const store = useStore();
 		const router = useRouter();
 
 		const selectedValues = ref<string[]>([]);
