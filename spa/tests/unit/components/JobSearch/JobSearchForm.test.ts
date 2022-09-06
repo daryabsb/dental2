@@ -3,13 +3,15 @@ import { useRouter } from "vue-router";
 
 jest.mock("vue-router");
 
+const useRouterMock = useRouter as jest.Mock;
+
 import JobSearchForm from "@/components/JobSearch/JobSearchForm.vue";
 
 describe("JobSearchForm", () => {
     describe("when the user submits the form", () => {
         it("directs user to job results page with params", async () => {
             const push = jest.fn();
-            useRouter.mockReturnValue({
+            useRouterMock.mockReturnValue({
                 push,
             })
             const wrapper = mount(JobSearchForm, {
